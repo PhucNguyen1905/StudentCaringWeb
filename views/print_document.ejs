@@ -1,0 +1,96 @@
+<%- include ('layouts/header') -%>
+
+<!-- dashboard inner -->
+<div class="midde_cont">
+   <div class="container-fluid">
+      <div class="row column_title">
+         <div class="col-md-12">
+            <div class="page_title">
+               <h2>In giấy tờ</h2>
+            </div>
+         </div>
+      </div>
+
+      <div style="background-color: #D1E8E4; padding: 1rem;">
+         <form>
+            <label for="" style="font-size: 1.5rem;"><strong>Thông tin cá nhân</strong></label>
+            <div class="row">
+               <div class="col">
+                  <label for="">Họ và Tên</label>
+                  <input disabled="disabled" type="text" class="form-control" placeholder="Nguyễn Trọng Phúc">
+               </div>
+               <div class="col">
+                  <label for="">Mã số sinh viên</label>
+                  <input disabled="disabled" type="text" class="form-control" placeholder="1914704">
+               </div>
+               <div class="col">
+                  <label for="">Ngày sinh</label>
+                  <input disabled="disabled" type="text" class="form-control" placeholder="19/05/2001">
+               </div>
+            </div>
+            <div class="row">
+               <div class="col">
+                  <label for="">Hộ khẩu thường trú</label>
+                  <input disabled="disabled" type="text" class="form-control"
+                     placeholder="Trung Ngãi, Vũng Liêm, Vĩnh Long">
+               </div>
+               <div class="col">
+                  <label for="">Hình thức</label>
+                  <input disabled="disabled" type="text" class="form-control" placeholder="Chính quy">
+               </div>
+               <div class="col">
+                  <label for="">Khoa</label>
+                  <input disabled="disabled" type="text" class="form-control"
+                     placeholder=" Khoa học và Kỹ thuật Máy tính">
+               </div>
+            </div>
+         </form>
+         <h1 style="padding-top: 1rem; font-size: large; padding-bottom: 0; color: red;">Thông tin này sẽ được dùng để
+            in giấy tờ, nếu thông
+            tin không đúng bạn
+            có
+            thể cập nhật <a style="color: blue;" href="/edit-info">tại đây</a>.
+         </h1>
+      </div>
+
+      <div style="background-color: #D1E8E4; padding: 1rem; margin-top: 2rem;">
+         <form>
+            <div class="form-group">
+               <label for="">Chọn loại giấy tờ</label>
+               <select class="form-control" name="type">
+                  <option value="1">Thẻ Sinh viên (50.000 VNĐ)</option>
+                  <option value="2">Bảng điểm (30.000 VNĐ)</option>
+                  <option value="3">Bảng điểm Học kỳ (5.000 VNĐ)</option>
+                  <option value="4">Chứng nhận sinh viên</option>
+
+               </select>
+            </div>
+            <div class="form-row">
+               <div class="form-group col-md-6">
+                  <label for="">Họ và Tên người nhận</label>
+                  <input type="text" class="form-control" name="recvname" placeholder="Họ và tên">
+               </div>
+               <div class="form-group col-md-6">
+                  <label for="">Số điện thoại</label>
+                  <input type="text" class="form-control" name="phone" placeholder="Số điện thoại">
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="inputAddress">Địa chỉ người nhận</label>
+               <input type="text" class="form-control" name="address" placeholder="1234 Main St">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Xác nhận đăng ký</button>
+         </form>
+
+         <h1 style="padding-top: 1rem; font-size: large; padding-bottom: 0; color: #FFA400;">Do tình hình dịch bệnh
+            Phòng
+            đào tạo mở kênh chuyển phát qua bưu điện, sinh viên cần nhập thông tin gửi
+            chính xác</h1>
+      </div>
+
+   </div>
+
+   <!-- end dashboard inner -->
+
+   <%- include ('layouts/footer') -%>
