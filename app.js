@@ -19,7 +19,9 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Router
 const studentRoute = require('./routes/student');
+const staffRoute = require('./routes/fstaff');
 
+app.use('/staff', staffRoute);
 app.use('/', studentRoute);
 
 let port = process.env.PORT || 8080;
