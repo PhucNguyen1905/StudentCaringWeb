@@ -1,0 +1,57 @@
+<%- include ('../layouts/staff_header') -%>
+
+<!-- dashboard inner -->
+<div class="midde_cont">
+   <div class="container-fluid">
+      <div class="row column_title">
+         <div class="col-md-12">
+            <div class="page_title">
+               <h2>Thêm sự kiện mới</h2>
+            </div>
+         </div>
+      </div>
+      <div>
+         <a href="/staff/list-event" class="btn btn-primary">Quay về danh sách</a>
+      </div>
+      <div style="background-color: #D1E8E4; padding: 1rem; margin-top: 2rem;">
+         <form method="post" accept="/add-event">
+            <div class="form-group">
+               <label for="">Tiêu đề sự kiện</label>
+               <input type="text" class="form-control" name="title" placeholder="Sự kiện...">
+            </div>
+            <div class="form-group">
+               <label for="">Đối tượng</label>
+               <input type="text" class="form-control" name="forwho" placeholder="Dành cho sinh viên...">
+            </div>
+            <div class="form-group">
+               <label for="">Link Ảnh</label>
+               <input type="text" class="form-control" name="imageURL">
+            </div>
+            <div class="form-row">
+               <div class="form-group col-md-6">
+                  <label for="">Thời gian</label>
+                  <input type="text" class="form-control" name="time_happen" placeholder="Từ ngày...đến...">
+               </div>
+               <div class="form-group col-md-6">
+                  <label for="">Thời gian ẩn (Hiện tại: <%= event.etime %>) </label>
+                  <input type="date" class="form-control" name="etime" placeholder="yyyy-mm-dd">
+               </div>
+            </div>
+            <label for="">Nội dung sự kiện</label>
+            <div class="form-floating">
+
+               <textarea class="form-control" name="content" id="floatingTextarea2" style="height: 10rem"></textarea>
+
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3">Đăng tải sự kiện</button>
+         </form>
+
+
+      </div>
+
+   </div>
+
+   <!-- end dashboard inner -->
+
+   <%- include ('../layouts/footer') -%>

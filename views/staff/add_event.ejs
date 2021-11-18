@@ -6,39 +6,45 @@
       <div class="row column_title">
          <div class="col-md-12">
             <div class="page_title">
-               <h2>Thêm thông báo mới</h2>
+               <h2>Thêm sự kiện mới</h2>
             </div>
          </div>
       </div>
-
+      <div>
+         <a href="/staff/list-event" class="btn btn-primary">Quay về danh sách</a>
+      </div>
       <div style="background-color: #D1E8E4; padding: 1rem; margin-top: 2rem;">
-         <form>
+         <form method="post" accept="/add-event">
             <div class="form-group">
-               <label for="">Tiêu đề thông báo</label>
-               <input type="text" class="form-control" name="name" placeholder="Thông báo...">
+               <label for="">Tiêu đề sự kiện</label>
+               <input type="text" class="form-control" name="title" placeholder="Sự kiện...">
             </div>
             <div class="form-group">
                <label for="">Đối tượng</label>
-               <input type="text" class="form-control" name="forWho" placeholder="Dành cho sinh viên...">
+               <input type="text" class="form-control" name="forwho" placeholder="Dành cho sinh viên...">
+            </div>
+            <div class="form-group">
+               <label for="">Link Ảnh</label>
+               <input type="text" class="form-control" name="imageURL">
             </div>
             <div class="form-row">
                <div class="form-group col-md-6">
                   <label for="">Thời gian</label>
-                  <input type="text" class="form-control" name="time" placeholder="Từ ngày...đến...">
+                  <input type="text" class="form-control" name="time_happen" placeholder="Từ ngày...đến...">
                </div>
                <div class="form-group col-md-6">
                   <label for="">Thời gian ẩn trên Trang chủ</label>
-                  <input type="datetime" class="form-control" name="forWho" placeholder="yyyy-mm-dd">
+                  <input type="date" class="form-control" name="etime" placeholder="yyyy-mm-dd">
                </div>
             </div>
+            <label for="">Nội dung sự kiện</label>
             <div class="form-floating">
-               <label for="floatingTextarea2">Nội dung thông báo</label>
-               <textarea class="form-control" placeholder="Cập nhật nội dung chi tiết của thông báo vào đây..."
-                  id="floatingTextarea2" style="height: 10rem"></textarea>
+
+               <textarea class="form-control" name="content" id="floatingTextarea2" style="height: 10rem"></textarea>
 
             </div>
 
-            <button type="submit" class="btn btn-primary mt-3">Đăng tải thông báo</button>
+            <button type="submit" class="btn btn-primary mt-3">Đăng tải sự kiện</button>
          </form>
 
 
