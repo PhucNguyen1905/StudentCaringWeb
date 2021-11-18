@@ -1,0 +1,148 @@
+<%- include ('layouts/header') -%>
+<style>
+    body {
+        background-color: #25274d;
+    }
+
+    .contact {
+        padding: 4%;
+        height: 400px;
+    }
+
+    .col-md-3 {
+        background: #ff5722;
+        padding: 4%;
+        border-top-left-radius: 0.5rem;
+        border-bottom-left-radius: 0.5rem;
+    }
+
+    .contact-info {
+        margin-top: 10%;
+    }
+
+    .contact-info img {
+        margin-bottom: 15%;
+    }
+
+    .contact-info h2 {
+        margin-bottom: 10%;
+    }
+
+    .col-md-9 {
+        background: #fff;
+        padding: 3%;
+        border-top-right-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+    }
+
+    .contact-form label {
+        font-weight: 600;
+    }
+
+    .contact-form button {
+        background: #25274d;
+        color: #fff;
+        font-weight: 600;
+        width: 25%;
+    }
+
+    .contact-form button:focus {
+        box-shadow: none;
+    }
+</style>
+<div class="col-md-12 mt-4 mb-xl-5">
+    <div class="dash_blog">
+        <div class="dash_blog_inner">
+            <div class="dash_head">
+                <h3><span><i class="fa fa-file-text-o"></i> Phản ánh chất lượng giảng dạy</span></h3>
+            </div>
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
+                id="bootstrap-css">
+            <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <!------ Include the above in your HEAD tag ---------->
+
+            <div class="container contact">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="contact-info">
+                            <img src="https://image.ibb.co/kUASdV/contact-image.png" alt="image" />
+                            <h2>Rate Us</h2>
+                            <h4>We would love to hear from you !</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <form action="/onSendFeedBack" method="post">
+                            <div class="contact-form">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-4" for="fullname">Họ và tên:</label>
+                                    <div class="col-sm-10">
+                                        <input disabled type="text" class="form-control" id="fulmssv"
+                                            placeholder="Enter First Name" name="fullname" value="Nguyễn Văn A">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-4" for="mssv">Mã số sinh viên:</label>
+                                    <div class="col-sm-10">
+                                        <input disabled type="text" class="form-control" id="mssv"
+                                            placeholder="Enter Last Name" name="mssv" value="1900420">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-4" for="email">Email:</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" id="email" placeholder="Enter email"
+                                            name="email">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-4" for="email">Tiêu đề</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="email" placeholder="Tiêu đề"
+                                            name="title">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-4" for="comment">Nội dung:</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" rows="5" name="content" id="comment"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <button type="button" data-toggle="modal" data-target="#exampleModal"
+                                            class="btn btn-default">Gửi</button>
+                                    </div>
+                                </div>
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Gửi thành công
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary">Trang chủ</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<%- include ('layouts/footer') -%>

@@ -16,7 +16,6 @@ exports.viewHome = (req, res) => {
     })
 }
 
-
 // This is for Thông báo function
 exports.viewNotification = (req, res) => {
     connection.query('SELECT * FROM main_notification', (err, notis) => {
@@ -199,17 +198,5 @@ exports.statusOff = (req, res) => {
 }
 
 
-
-// This is for Sự kiện function
-exports.viewEvet = (req, res) => {
-    res.render('staff/list_event', {
-        title: 'Danh sách sự kiện'
-    })
-}
-exports.viewAddEvent = (req, res) => {
-    res.render('staff/add_event', {
-        title: 'Thêm sự kiện mới'
-    })
-}
 
 

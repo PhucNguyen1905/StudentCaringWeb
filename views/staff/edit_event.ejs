@@ -17,20 +17,20 @@
          <form method="post" accept="/add-event">
             <div class="form-group">
                <label for="">Tiêu đề sự kiện</label>
-               <input type="text" class="form-control" name="title" placeholder="Sự kiện...">
+               <input type="text" class="form-control" name="title" value="<%= event.title %>">
             </div>
             <div class="form-group">
                <label for="">Đối tượng</label>
-               <input type="text" class="form-control" name="forwho" placeholder="Dành cho sinh viên...">
+               <input type="text" class="form-control" name="forwho" value="<%= event.forwho %>">
             </div>
             <div class="form-group">
                <label for="">Link Ảnh</label>
-               <input type="text" class="form-control" name="imageURL">
+               <input type="text" class="form-control" name="image_url" value="<%= event.image_url %>">
             </div>
             <div class="form-row">
                <div class="form-group col-md-6">
                   <label for="">Thời gian</label>
-                  <input type="text" class="form-control" name="time_happen" placeholder="Từ ngày...đến...">
+                  <input type="text" class="form-control" name="time_happen" value="<%= event.time_happen %>">
                </div>
                <div class="form-group col-md-6">
                   <label for="">Thời gian ẩn (Hiện tại: <%= event.etime %>) </label>
@@ -40,7 +40,8 @@
             <label for="">Nội dung sự kiện</label>
             <div class="form-floating">
 
-               <textarea class="form-control" name="content" id="floatingTextarea2" style="height: 10rem"></textarea>
+               <textarea class="form-control" name="content" id="floatingTextarea2"
+                  style="height: 10rem"><%= event.content %> </textarea>
 
             </div>
 

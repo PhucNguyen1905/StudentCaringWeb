@@ -1689,7 +1689,7 @@ a[data-toggle="collapse"] {
 }
 
 .dash_blog {
-    min-height: 650px;
+    min-height: 400px;
     background: #fff;
     border-radius: 5px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);

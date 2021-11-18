@@ -46,7 +46,7 @@
                <% events.forEach(function(event){%>
                <tr>
                   <td><%= i %> </td>
-                  <td><img src="<%= event.imageURL %>" alt="" style="height: 5rem; width: 6rem;"></td>
+                  <td><img src="<%= event.image_url %>" alt="" style="height: 5rem; width: 6rem;"></td>
                   <td><%= event.title %></td>
                   <td><%= event.etime %></td>
                   <td style="text-align: center;">
@@ -85,7 +85,7 @@
                      </div>
                   </td>
                   <td style="text-align: center;">
-                     <% if(event.nstatus == 'off'){%>
+                     <% if(event.status == 'off'){%>
                      <a class=" link-info" style="text-decoration: none;" href="/staff/event/status-on/<%=event.id%>">
                         <i class="fa fa-eye-slash"></i>
                      </a>

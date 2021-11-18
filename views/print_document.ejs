@@ -17,31 +17,33 @@
             <div class="row">
                <div class="col">
                   <label for="">Họ và Tên</label>
-                  <input disabled="disabled" type="text" class="form-control" placeholder="Nguyễn Trọng Phúc">
+                  <input disabled="disabled" type="text" class="form-control"
+                     placeholder="<%= user.lname %> <%= user.fname %>">
                </div>
                <div class="col">
                   <label for="">Mã số sinh viên</label>
-                  <input disabled="disabled" type="text" class="form-control" placeholder="1914704">
+                  <input disabled="disabled" type="text" class="form-control" placeholder="<%= user.id %>">
                </div>
                <div class="col">
                   <label for="">Ngày sinh</label>
-                  <input disabled="disabled" type="text" class="form-control" placeholder="19/05/2001">
+                  <input disabled="disabled" type="text" class="form-control"
+                     placeholder="<%= convertDate(user.DayOfBirth) %>">
                </div>
             </div>
             <div class="row">
                <div class="col">
                   <label for="">Hộ khẩu thường trú</label>
                   <input disabled="disabled" type="text" class="form-control"
-                     placeholder="Trung Ngãi, Vũng Liêm, Vĩnh Long">
+                     placeholder="<%= user.ApartmentNumber %> <%= user.Street %>, <%= user.province %> ">
                </div>
                <div class="col">
                   <label for="">Hình thức</label>
-                  <input disabled="disabled" type="text" class="form-control" placeholder="Chính quy">
+                  <input disabled="disabled" type="text" class="form-control" placeholder="<%= user.EduProgram %>">
                </div>
                <div class="col">
                   <label for="">Khoa</label>
                   <input disabled="disabled" type="text" class="form-control"
-                     placeholder=" Khoa học và Kỹ thuật Máy tính">
+                     placeholder="<%= getFacultyName(user.Faculty_ID) %>">
                </div>
             </div>
          </form>

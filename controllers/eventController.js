@@ -42,9 +42,9 @@ exports.addEvent = (req, res) => {
     const time_happen = req.body.time_happen;
     const etime = req.body.etime;
     const content = req.body.content;
-    const imageURL = req.body.imageURL;
-    const sql = 'INSERT INTO main_notification(title, forwho, time_happen, etime, content, imageURL) VALUES(?,?,?,?,?,?)';
-    connection.query(sql, [title, forwho, time_happen, etime, content, imageURL], (error, result) => {
+    const image_url = req.body.image_url;
+    const sql = 'INSERT INTO event(title, forwho, time_happen, etime, content, image_url, FACULTYSTAFF_ID) VALUES(?,?,?,?,?,?,?)';
+    connection.query(sql, [title, forwho, time_happen, etime, content, image_url, 1], (error, result) => {
         // When done with the connection, release it
         if (!error) {
             connection.query('SELECT * FROM event', (err, events) => {
@@ -67,7 +67,7 @@ exports.addEvent = (req, res) => {
     })
 
 }
-// View Edit noti
+// View Edit event
 exports.viewEditEvent = (req, res) => {
     let id = req.params.id;
     connection.query('SELECT * FROM event WHERE id = ?', [id], (err, events) => {
@@ -83,7 +83,7 @@ exports.viewEditEvent = (req, res) => {
     });
 
 }
-// POST edit noti
+// POST edit event
 exports.editEvent = (req, res) => {
     let id = req.params.id;
     const title = req.body.title;
@@ -91,9 +91,9 @@ exports.editEvent = (req, res) => {
     const time_happen = req.body.time_happen;
     const etime = req.body.etime;
     const content = req.body.content;
-    const imageURL = req.body.imageURL;
-    const sql = 'UPDATE main_notification set title = ?, forwho = ?, time_happen = ?, etime = ?, content = ?, imageURL = ? WHERE id = ?'
-    connection.query(sql, [title, forwho, time_happen, etime, content, imageURL, id], (error, result) => {
+    const image_url = req.body.image_url;
+    const sql = 'UPDATE event set title = ?, forwho = ?, time_happen = ?, etime = ?, content = ?, image_url = ? WHERE id = ?'
+    connection.query(sql, [title, forwho, time_happen, etime, content, image_url, id], (error, result) => {
         // When done with the connection, release it
         if (!error) {
             connection.query('SELECT * FROM event', (err, events) => {
@@ -118,7 +118,7 @@ exports.editEvent = (req, res) => {
 
 
 }
-// Delete noti
+// Delete event
 exports.deleteEvent = (req, res) => {
     let id = req.params.id;
     connection.query('DELETE FROM event WHERE id = ?', [id], (error, result) => {
@@ -147,7 +147,7 @@ exports.deleteEvent = (req, res) => {
 exports.statusOn = (req, res) => {
     let status = 'on';
     let id = req.params.id;
-    connection.query('UPDATE main_notification SET status = ? WHERE id = ?', [status, id], (error, result) => {
+    connection.query('UPDATE event SET status = ? WHERE id = ?', [status, id], (error, result) => {
         // When done with the connection, release it
         if (!error) {
             connection.query('SELECT * FROM event', (err, events) => {

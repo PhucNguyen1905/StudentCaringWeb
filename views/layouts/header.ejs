@@ -52,7 +52,7 @@
                             <div class="user_img"><img class="img-responsive" src="/images/layout_img/user_img.jpg"
                                     alt="#" /></div>
                             <div class="user_info">
-                                <h6>Phúc Nguyễn</h6>
+                                <h6><%= user.lname %> <%= user.fname %></h6>
                                 <p><span class="online_animation"></span> Online</p>
                             </div>
                         </div>
@@ -77,9 +77,8 @@
                                     class="fa fa-briefcase blue1_color"></i> <span>Đăng ký</span></a>
                             <ul class="collapse list-unstyled" id="apps">
                                 <li><a href="/print">> <span>In giấy tờ</span></a></li>
-                                <li><a href="calendar.html">> <span>Miễn giảm học phí</span></a></li>
-                                <li><a href="media_gallery.html">> <span>Phúc khảo</span></a></li>
-                                <li><a href="media_gallery.html">> <span>Phản ánh chất lượng</span></a></li>
+                                <li><a href="/reduce-tuition">> <span>Miễn giảm học phí</span></a></li>
+                                <li><a href="/feedback">> <span>Phản ánh chất lượng</span></a></li>
                             </ul>
                         </li>
 
@@ -119,12 +118,12 @@
                                             <a class="dropdown-toggle" data-toggle="dropdown"><img
                                                     class="img-responsive rounded-circle"
                                                     src="/images/layout_img/user_img.jpg" alt="#" /><span
-                                                    class="name_user">Phúc</span></a>
+                                                    class="name_user"><%= user.fname %></span></a>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="profile.html">My Profile</a>
-                                                <a class="dropdown-item" href="settings.html">Settings</a>
-                                                <a class="dropdown-item" href="help.html">Help</a>
-                                                <a class="dropdown-item" href="#"><span>Log Out</span> <i
+                                                <a class="dropdown-item" href="/edit-info">Settings</a>
+                                                <a class="dropdown-item" href="/contact">Help</a>
+                                                <a class="dropdown-item" href="/logout"><span>Log Out</span> <i
                                                         class="fa fa-sign-out"></i></a>
                                             </div>
                                         </li>

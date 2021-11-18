@@ -14,19 +14,18 @@
       <div class="row">
 
          <!-- tab style 2 -->
+         <% events.forEach(function(event){%>
          <div class="col-md-6">
             <div class="white_shd full margin_bottom_30">
                <div class="full graph_head">
                   <div class="heading1 margin_0">
-                     <h2>KMS x HCMUT – Virtual Office Tour 25/11</h2>
+                     <h2><%= event.title %> </h2>
                   </div>
                </div>
                <div class="full inner_elements">
                   <div class="row">
                      <div class="col-md-12 padding_infor_info">
-                        <img style="height: 18rem;"
-                           src="https://cse.hcmut.edu.vn/wp-content/uploads/2021/11/Poster-KMS-Virtual-Office-Tour-2106x1053.png"
-                           alt="">
+                        <img style="height: 18rem;" src="<%= event.image_url %>" alt="">
                      </div>
                   </div>
                   <div class="row">
@@ -36,33 +35,31 @@
                               <nav>
                                  <div class="nav nav-tabs" id="nav-tab1" role="tablist">
                                     <a class="nav-item nav-link active" id="nav-home-tab2" data-toggle="tab"
-                                       href="#nav-home_s2" role="tab" aria-controls="nav-home_s2"
+                                       href="#nav-home_<%= event.id %>" role="tab" aria-controls="nav-home_s2"
                                        aria-selected="true">Đối tượng</a>
                                     <a class="nav-item nav-link" id="nav-profile-tab2" data-toggle="tab"
-                                       href="#nav-profile_s2" role="tab" aria-controls="nav-profile_s2"
+                                       href="#nav-profile_<%= event.id %>" role="tab" aria-controls="nav-profile_s2"
                                        aria-selected="false">Thời gian</a>
                                     <a class="nav-item nav-link" id="nav-contact-tab2" data-toggle="tab"
-                                       href="#nav-contact_s2" role="tab" aria-controls="nav-contacts_s2"
+                                       href="#nav-contact_<%= event.id %>" role="tab" aria-controls="nav-contacts_s2"
                                        aria-selected="false">Chi tiết</a>
-                                    <a href=" #" class="btn btn-primary">Đăng ký</a>
+                                    <a href="/register-event/<%= event.id %>" class="btn btn-primary">Đăng ký</a>
                                  </div>
                               </nav>
                               <div class="tab-content" id="nav-tabContent_2">
-                                 <div class="tab-pane fade show active" id="nav-home_s2" role="tabpanel"
+                                 <div class="tab-pane fade show active" id="nav-home_<%= event.id %>" role="tabpanel"
                                     aria-labelledby="nav-home-tab">
-                                    <p>Đối tượng sinh viên đăng ký: Sinh viên ngành CNTT, năm 3 trở lên
+                                    <p><%= event.forwho %>
                                     </p>
                                  </div>
-                                 <div class="tab-pane fade" id="nav-profile_s2" role="tabpanel"
+                                 <div class="tab-pane fade" id="nav-profile_<%= event.id %>" role="tabpanel"
                                     aria-labelledby="nav-profile-tab">
-                                    <p>Thời gian: 9h00 – 12h00, Thứ 5, ngày 25/11/2021.
+                                    <p><%= event.time_happen %>
                                     </p>
                                  </div>
-                                 <div class="tab-pane fade" id="nav-contact_s2" role="tabpanel"
+                                 <div class="tab-pane fade" id="nav-contact_<%= event.id %>" role="tabpanel"
                                     aria-labelledby="nav-contact-tab">
-                                    <p>KMS TOUR – chương trình tham quan văn phòng và gặp gỡ con người KMS, một trong
-                                       những nơi làm việc tốt nhất Việt Nam và Châu Á – luôn là cơ hội đáng mong chờ của
-                                       rất nhiều bạn sinh viên CNTT</p>
+                                    <p><%= event.content %></p>
                                  </div>
                               </div>
                            </div>
@@ -73,63 +70,9 @@
                </div>
             </div>
          </div>
-         <div class="col-md-6">
-            <div class="white_shd full margin_bottom_30">
-               <div class="full graph_head">
-                  <div class="heading1 margin_0">
-                     <h2>KMS x HCMUT – Virtual Office Tour 25/11</h2>
-                  </div>
-               </div>
-               <div class="full inner_elements">
-                  <div class="row">
-                     <div class="col-md-12 padding_infor_info">
-                        <img style="height: 18rem;"
-                           src="https://cse.hcmut.edu.vn/wp-content/uploads/2021/11/Poster-KMS-Virtual-Office-Tour-2106x1053.png"
-                           alt="">
-                     </div>
-                  </div>
-                  <div class="row">
-                     <div class="col-md-12">
-                        <div class="tab_style2">
-                           <div class="tabbar padding_infor_info">
-                              <nav>
-                                 <div class="nav nav-tabs" id="nav-tab1" role="tablist">
-                                    <a class="nav-item nav-link active" id="nav-home-tab2" data-toggle="tab"
-                                       href="#nav-home_s2" role="tab" aria-controls="nav-home_s2"
-                                       aria-selected="true">Đối tượng</a>
-                                    <a class="nav-item nav-link" id="nav-profile-tab2" data-toggle="tab"
-                                       href="#nav-profile_s2" role="tab" aria-controls="nav-profile_s2"
-                                       aria-selected="false">Thời gian</a>
-                                    <a class="nav-item nav-link" id="nav-contact-tab2" data-toggle="tab"
-                                       href="#nav-contact_s2" role="tab" aria-controls="nav-contacts_s2"
-                                       aria-selected="false">Chi tiết</a>
-                                 </div>
-                              </nav>
-                              <div class="tab-content" id="nav-tabContent_2">
-                                 <div class="tab-pane fade show active" id="nav-home_s2" role="tabpanel"
-                                    aria-labelledby="nav-home-tab">
-                                    <p>Đối tượng sinh viên đăng ký: Sinh viên ngành CNTT, năm 3 trở lên
-                                    </p>
-                                 </div>
-                                 <div class="tab-pane fade" id="nav-profile_s2" role="tabpanel"
-                                    aria-labelledby="nav-profile-tab">
-                                    <p>Thời gian: 9h00 – 12h00, Thứ 5, ngày 25/11/2021.
-                                    </p>
-                                 </div>
-                                 <div class="tab-pane fade" id="nav-contact_s2" role="tabpanel"
-                                    aria-labelledby="nav-contact-tab">
-                                    <p>KMS TOUR – chương trình tham quan văn phòng và gặp gỡ con người KMS, một trong
-                                       những nơi làm việc tốt nhất Việt Nam và Châu Á – luôn là cơ hội đáng mong chờ của
-                                       rất nhiều bạn sinh viên CNTT</p>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
+         <%}) %>
+
+
       </div>
 
    </div>
