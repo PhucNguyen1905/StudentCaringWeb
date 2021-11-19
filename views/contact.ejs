@@ -11,31 +11,37 @@
       </div>
       <!-- row -->
       <div class="row column1">
+         <!-- Đào tạo -->
          <div class="col-md-12">
             <div class="white_shd full margin_bottom_30">
                <div class="full graph_head">
                   <div class="heading1 margin_0">
-                     <h2>Contacts</h2>
+                     <h2>Đào tạo</h2>
                   </div>
                </div>
                <div class="full price_table padding_infor_info">
                   <div class="row">
                      <!-- column contact -->
-                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 profile_details margin_bottom_30">
+                     <% consultants.forEach(function(c){%>
+                     <% if(c.Consulting_field == 'Đào tạo'){%>
+                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 profile_details margin_bottom_30">
                         <div class="contact_blog">
-                           <h4 class="brief">Digital Strategist</h4>
+                           <h4 class="brief">Tư vấn viên</h4>
                            <div class="contact_inner">
                               <div class="left">
-                                 <h3>John Smith</h3>
-                                 <p><strong>About: </strong>Frontend Developer</p>
+                                 <h3><%= c.lname %> <%= c.fname %> </h3>
+                                 <p><strong>Chuyên ngành: </strong>Đào tạo</p>
                                  <ul class="list-unstyled">
-                                    <li><i class="fa fa-envelope-o"></i> : test@gmail.com</li>
-                                    <li><i class="fa fa-phone"></i> : 987 654 3210</li>
+                                    <li><i class="fa fa-envelope-o"></i> : <%= c.Edu_mail %> </li>
                                  </ul>
                               </div>
                               <div class="right">
                                  <div class="profile_contacts">
-                                    <img class="img-responsive" src="images/layout_img/msg2.png" alt="#" />
+                                    <% if(c.sex == 'man'){%>
+                                    <img class="img-responsive" src="/images/layout_img/consultant1.jpg" alt="#" />
+                                    <%}else{%>
+                                    <img class="img-responsive" src="/images/layout_img/consultant2.png" alt="#" />
+                                    <%} %>
                                  </div>
                               </div>
                               <div class="bottom_list">
@@ -49,345 +55,240 @@
                                     </p>
                                  </div>
                                  <div class="right_button">
-                                    <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
-                                       </i> <i class="fa fa-comments-o"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-primary btn-xs">
+                                    <a style="color: white;" class="btn btn-success btn-xs" data-bs-toggle="modal"
+                                       data-bs-target="#statusModal<%= c.id %>"> <i class="fa fa-user">
+                                       </i> <i class="fa fa-comments-o"> Chat</i>
+                                    </a>
+                                    <div class="modal fade" id="statusModal<%= c.id %>" tabindex="-1"
+                                       aria-labelledby="statusModalLabel" aria-hidden="true">
+                                       <div class="modal-dialog">
+                                          <div class="modal-content">
+                                             <div class="modal-header">
+                                                <h5 class="modal-title" id="statusModalLabel">Gửi tin nhắn</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                   aria-label="Close"></button>
+                                             </div>
+                                             <div class="modal-body">
+                                                <form method="post" action="/chat/send-mess/<%= c.id %>">
+                                                   <div class="mb-3">
+                                                      <label for="" class="form-label">Nội dung tin nhắn</label>
+                                                      <input type="text" class="form-control" name="content">
+                                                      <div id="emailHelp" class="form-text">Gửi câu hỏi cho tư vấn viên,
+                                                         giải đáp thắc mắc của bạn!</div>
+                                                   </div>
+                                                   <button type="submit" class="btn btn-primary">Gửi</button>
+                                                </form>
+                                             </div>
+                                             <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                   data-bs-dismiss="modal">Đóng</button>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <!-- <button type="button" class="btn btn-primary btn-xs">
                                        <i class="fa fa-user"> </i> View Profile
-                                    </button>
+                                    </button> -->
                                  </div>
                               </div>
                            </div>
                         </div>
                      </div>
-                     <!-- end column contact blog -->
-                     <!-- column contact -->
-                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 profile_details margin_bottom_30">
-                        <div class="contact_blog">
-                           <h4 class="brief">Digital Strategist</h4>
-                           <div class="contact_inner">
-                              <div class="left">
-                                 <h3>John Smith</h3>
-                                 <p><strong>About: </strong>Frontend Developer</p>
-                                 <ul class="list-unstyled">
-                                    <li><i class="fa fa-envelope-o"></i> : test@gmail.com</li>
-                                    <li><i class="fa fa-phone"></i> : 987 654 3210</li>
-                                 </ul>
-                              </div>
-                              <div class="right">
-                                 <div class="profile_contacts">
-                                    <img class="img-responsive" src="images/layout_img/msg2.png" alt="#" />
-                                 </div>
-                              </div>
-                              <div class="bottom_list">
-                                 <div class="left_rating">
-                                    <p class="ratings">
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star-o"></span></a>
-                                    </p>
-                                 </div>
-                                 <div class="right_button">
-                                    <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
-                                       </i> <i class="fa fa-comments-o"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-primary btn-xs">
-                                       <i class="fa fa-user"> </i> View Profile
-                                    </button>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <!-- end column contact blog -->
-                     <!-- column contact -->
-                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 profile_details margin_bottom_30">
-                        <div class="contact_blog">
-                           <h4 class="brief">Digital Strategist</h4>
-                           <div class="contact_inner">
-                              <div class="left">
-                                 <h3>John Smith</h3>
-                                 <p><strong>About: </strong>Frontend Developer</p>
-                                 <ul class="list-unstyled">
-                                    <li><i class="fa fa-envelope-o"></i> : test@gmail.com</li>
-                                    <li><i class="fa fa-phone"></i> : 987 654 3210</li>
-                                 </ul>
-                              </div>
-                              <div class="right">
-                                 <div class="profile_contacts">
-                                    <img class="img-responsive" src="images/layout_img/msg2.png" alt="#" />
-                                 </div>
-                              </div>
-                              <div class="bottom_list">
-                                 <div class="left_rating">
-                                    <p class="ratings">
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star-o"></span></a>
-                                    </p>
-                                 </div>
-                                 <div class="right_button">
-                                    <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
-                                       </i> <i class="fa fa-comments-o"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-primary btn-xs">
-                                       <i class="fa fa-user"> </i> View Profile
-                                    </button>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <!-- end column contact blog -->
-                     <!-- column contact -->
-                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 profile_details margin_bottom_30">
-                        <div class="contact_blog">
-                           <h4 class="brief">Digital Strategist</h4>
-                           <div class="contact_inner">
-                              <div class="left">
-                                 <h3>John Smith</h3>
-                                 <p><strong>About: </strong>Frontend Developer</p>
-                                 <ul class="list-unstyled">
-                                    <li><i class="fa fa-envelope-o"></i> : test@gmail.com</li>
-                                    <li><i class="fa fa-phone"></i> : 987 654 3210</li>
-                                 </ul>
-                              </div>
-                              <div class="right">
-                                 <div class="profile_contacts">
-                                    <img class="img-responsive" src="images/layout_img/msg2.png" alt="#" />
-                                 </div>
-                              </div>
-                              <div class="bottom_list">
-                                 <div class="left_rating">
-                                    <p class="ratings">
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star-o"></span></a>
-                                    </p>
-                                 </div>
-                                 <div class="right_button">
-                                    <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
-                                       </i> <i class="fa fa-comments-o"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-primary btn-xs">
-                                       <i class="fa fa-user"> </i> View Profile
-                                    </button>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <!-- end column contact blog -->
-                     <!-- column contact -->
-                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 profile_details margin_bottom_30">
-                        <div class="contact_blog">
-                           <h4 class="brief">Digital Strategist</h4>
-                           <div class="contact_inner">
-                              <div class="left">
-                                 <h3>John Smith</h3>
-                                 <p><strong>About: </strong>Frontend Developer</p>
-                                 <ul class="list-unstyled">
-                                    <li><i class="fa fa-envelope-o"></i> : test@gmail.com</li>
-                                    <li><i class="fa fa-phone"></i> : 987 654 3210</li>
-                                 </ul>
-                              </div>
-                              <div class="right">
-                                 <div class="profile_contacts">
-                                    <img class="img-responsive" src="images/layout_img/msg2.png" alt="#" />
-                                 </div>
-                              </div>
-                              <div class="bottom_list">
-                                 <div class="left_rating">
-                                    <p class="ratings">
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star-o"></span></a>
-                                    </p>
-                                 </div>
-                                 <div class="right_button">
-                                    <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
-                                       </i> <i class="fa fa-comments-o"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-primary btn-xs">
-                                       <i class="fa fa-user"> </i> View Profile
-                                    </button>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <!-- end column contact blog -->
-                     <!-- column contact -->
-                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 profile_details margin_bottom_30">
-                        <div class="contact_blog">
-                           <h4 class="brief">Digital Strategist</h4>
-                           <div class="contact_inner">
-                              <div class="left">
-                                 <h3>John Smith</h3>
-                                 <p><strong>About: </strong>Frontend Developer</p>
-                                 <ul class="list-unstyled">
-                                    <li><i class="fa fa-envelope-o"></i> : test@gmail.com</li>
-                                    <li><i class="fa fa-phone"></i> : 987 654 3210</li>
-                                 </ul>
-                              </div>
-                              <div class="right">
-                                 <div class="profile_contacts">
-                                    <img class="img-responsive" src="images/layout_img/msg2.png" alt="#" />
-                                 </div>
-                              </div>
-                              <div class="bottom_list">
-                                 <div class="left_rating">
-                                    <p class="ratings">
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star-o"></span></a>
-                                    </p>
-                                 </div>
-                                 <div class="right_button">
-                                    <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
-                                       </i> <i class="fa fa-comments-o"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-primary btn-xs">
-                                       <i class="fa fa-user"> </i> View Profile
-                                    </button>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <!-- end column contact blog -->
-                     <!-- column contact -->
-                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 profile_details margin_bottom_30">
-                        <div class="contact_blog">
-                           <h4 class="brief">Digital Strategist</h4>
-                           <div class="contact_inner">
-                              <div class="left">
-                                 <h3>John Smith</h3>
-                                 <p><strong>About: </strong>Frontend Developer</p>
-                                 <ul class="list-unstyled">
-                                    <li><i class="fa fa-envelope-o"></i> : test@gmail.com</li>
-                                    <li><i class="fa fa-phone"></i> : 987 654 3210</li>
-                                 </ul>
-                              </div>
-                              <div class="right">
-                                 <div class="profile_contacts">
-                                    <img class="img-responsive" src="images/layout_img/msg2.png" alt="#" />
-                                 </div>
-                              </div>
-                              <div class="bottom_list">
-                                 <div class="left_rating">
-                                    <p class="ratings">
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star-o"></span></a>
-                                    </p>
-                                 </div>
-                                 <div class="right_button">
-                                    <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
-                                       </i> <i class="fa fa-comments-o"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-primary btn-xs">
-                                       <i class="fa fa-user"> </i> View Profile
-                                    </button>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <!-- end column contact blog -->
-                     <!-- column contact -->
-                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 profile_details margin_bottom_30">
-                        <div class="contact_blog">
-                           <h4 class="brief">Digital Strategist</h4>
-                           <div class="contact_inner">
-                              <div class="left">
-                                 <h3>John Smith</h3>
-                                 <p><strong>About: </strong>Frontend Developer</p>
-                                 <ul class="list-unstyled">
-                                    <li><i class="fa fa-envelope-o"></i> : test@gmail.com</li>
-                                    <li><i class="fa fa-phone"></i> : 987 654 3210</li>
-                                 </ul>
-                              </div>
-                              <div class="right">
-                                 <div class="profile_contacts">
-                                    <img class="img-responsive" src="images/layout_img/msg2.png" alt="#" />
-                                 </div>
-                              </div>
-                              <div class="bottom_list">
-                                 <div class="left_rating">
-                                    <p class="ratings">
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star-o"></span></a>
-                                    </p>
-                                 </div>
-                                 <div class="right_button">
-                                    <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
-                                       </i> <i class="fa fa-comments-o"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-primary btn-xs">
-                                       <i class="fa fa-user"> </i> View Profile
-                                    </button>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <!-- end column contact blog -->
-                     <!-- column contact -->
-                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 profile_details margin_bottom_30">
-                        <div class="contact_blog">
-                           <h4 class="brief">Digital Strategist</h4>
-                           <div class="contact_inner">
-                              <div class="left">
-                                 <h3>John Smith</h3>
-                                 <p><strong>About: </strong>Frontend Developer</p>
-                                 <ul class="list-unstyled">
-                                    <li><i class="fa fa-envelope-o"></i> : test@gmail.com</li>
-                                    <li><i class="fa fa-phone"></i> : 987 654 3210</li>
-                                 </ul>
-                              </div>
-                              <div class="right">
-                                 <div class="profile_contacts">
-                                    <img class="img-responsive" src="images/layout_img/msg2.png" alt="#" />
-                                 </div>
-                              </div>
-                              <div class="bottom_list">
-                                 <div class="left_rating">
-                                    <p class="ratings">
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star"></span></a>
-                                       <a href="#"><span class="fa fa-star-o"></span></a>
-                                    </p>
-                                 </div>
-                                 <div class="right_button">
-                                    <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
-                                       </i> <i class="fa fa-comments-o"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-primary btn-xs">
-                                       <i class="fa fa-user"> </i> View Profile
-                                    </button>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
+                     <%} %>
+                     <%}) %>
                      <!-- end column contact blog -->
 
-                     <%- include ('layouts/footer') -%>
+
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <!-- Tâm lý -->
+         <div class="col-md-12">
+            <div class="white_shd full margin_bottom_30">
+               <div class="full graph_head">
+                  <div class="heading1 margin_0">
+                     <h2>Tâm lý</h2>
+                  </div>
+               </div>
+               <div class="full price_table padding_infor_info">
+                  <div class="row">
+                     <!-- column contact -->
+                     <% consultants.forEach(function(c){%>
+                     <% if(c.Consulting_field == 'Tâm lý'){%>
+                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 profile_details margin_bottom_30">
+                        <div class="contact_blog">
+                           <h4 class="brief">Tư vấn viên</h4>
+                           <div class="contact_inner">
+                              <div class="left">
+                                 <h3><%= c.lname %> <%= c.fname %> </h3>
+                                 <p><strong>Chuyên ngành: </strong>Tâm lý</p>
+                                 <ul class="list-unstyled">
+                                    <li><i class="fa fa-envelope-o"></i> : <%= c.Edu_mail %> </li>
+                                 </ul>
+                              </div>
+                              <div class="right">
+                                 <div class="profile_contacts">
+                                    <% if(c.sex == 'man'){%>
+                                    <img class="img-responsive" src="/images/layout_img/consultant1.jpg" alt="#" />
+                                    <%}else{%>
+                                    <img class="img-responsive" src="/images/layout_img/consultant2.png" alt="#" />
+                                    <%} %>
+                                 </div>
+                              </div>
+                              <div class="bottom_list">
+                                 <div class="left_rating">
+                                    <p class="ratings">
+                                       <a href="#"><span class="fa fa-star"></span></a>
+                                       <a href="#"><span class="fa fa-star"></span></a>
+                                       <a href="#"><span class="fa fa-star"></span></a>
+                                       <a href="#"><span class="fa fa-star"></span></a>
+                                       <a href="#"><span class="fa fa-star-o"></span></a>
+                                    </p>
+                                 </div>
+                                 <div class="right_button">
+                                    <a style="color: white;" class="btn btn-success btn-xs" data-bs-toggle="modal"
+                                       data-bs-target="#statusModal<%= c.id %>"> <i class="fa fa-user">
+                                       </i> <i class="fa fa-comments-o"> Chat</i>
+                                    </a>
+                                    <div class="modal fade" id="statusModal<%= c.id %>" tabindex="-1"
+                                       aria-labelledby="statusModalLabel" aria-hidden="true">
+                                       <div class="modal-dialog">
+                                          <div class="modal-content">
+                                             <div class="modal-header">
+                                                <h5 class="modal-title" id="statusModalLabel">Gửi tin nhắn</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                   aria-label="Close"></button>
+                                             </div>
+                                             <div class="modal-body">
+                                                <form method="post" action="/chat/send-mess/<%= c.id %>">
+                                                   <div class="mb-3">
+                                                      <label for="" class="form-label">Nội dung tin nhắn</label>
+                                                      <input type="text" class="form-control" name="content">
+                                                      <div id="emailHelp" class="form-text">Gửi câu hỏi cho tư vấn viên,
+                                                         giải đáp thắc mắc của bạn!</div>
+                                                   </div>
+                                                   <button type="submit" class="btn btn-primary">Gửi</button>
+                                                </form>
+                                             </div>
+                                             <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                   data-bs-dismiss="modal">Đóng</button>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <!-- <button type="button" class="btn btn-primary btn-xs">
+                                       <i class="fa fa-user"> </i> View Profile
+                                    </button> -->
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <%} %>
+                     <%}) %>
+                     <!-- end column contact blog -->
+
+
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <!-- Sức khỏe -->
+         <div class="col-md-12">
+            <div class="white_shd full margin_bottom_30">
+               <div class="full graph_head">
+                  <div class="heading1 margin_0">
+                     <h2>Sức khỏe</h2>
+                  </div>
+               </div>
+               <div class="full price_table padding_infor_info">
+                  <div class="row">
+                     <!-- column contact -->
+                     <% consultants.forEach(function(c){%>
+                     <% if(c.Consulting_field == 'Sức khỏe'){%>
+                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 profile_details margin_bottom_30">
+                        <div class="contact_blog">
+                           <h4 class="brief">Tư vấn viên</h4>
+                           <div class="contact_inner">
+                              <div class="left">
+                                 <h3><%= c.lname %> <%= c.fname %> </h3>
+                                 <p><strong>Chuyên ngành: </strong>Sức khỏe</p>
+                                 <ul class="list-unstyled">
+                                    <li><i class="fa fa-envelope-o"></i> : <%= c.Edu_mail %> </li>
+                                 </ul>
+                              </div>
+                              <div class="right">
+                                 <div class="profile_contacts">
+                                    <% if(c.sex == 'man'){%>
+                                    <img class="img-responsive" src="/images/layout_img/consultant1.jpg" alt="#" />
+                                    <%}else{%>
+                                    <img class="img-responsive" src="/images/layout_img/consultant2.png" alt="#" />
+                                    <%} %>
+                                 </div>
+                              </div>
+                              <div class="bottom_list">
+                                 <div class="left_rating">
+                                    <p class="ratings">
+                                       <a href="#"><span class="fa fa-star"></span></a>
+                                       <a href="#"><span class="fa fa-star"></span></a>
+                                       <a href="#"><span class="fa fa-star"></span></a>
+                                       <a href="#"><span class="fa fa-star"></span></a>
+                                       <a href="#"><span class="fa fa-star-o"></span></a>
+                                    </p>
+                                 </div>
+                                 <div class="right_button">
+                                    <a style="color: white;" class="btn btn-success btn-xs" data-bs-toggle="modal"
+                                       data-bs-target="#statusModal<%= c.id %>"> <i class="fa fa-user">
+                                       </i> <i class="fa fa-comments-o"> Chat</i>
+                                    </a>
+                                    <div class="modal fade" id="statusModal<%= c.id %>" tabindex="-1"
+                                       aria-labelledby="statusModalLabel" aria-hidden="true">
+                                       <div class="modal-dialog">
+                                          <div class="modal-content">
+                                             <div class="modal-header">
+                                                <h5 class="modal-title" id="statusModalLabel">Gửi tin nhắn</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                   aria-label="Close"></button>
+                                             </div>
+                                             <div class="modal-body">
+                                                <form method="post" action="/chat/send-mess/<%= c.id %>">
+                                                   <div class="mb-3">
+                                                      <label for="" class="form-label">Nội dung tin nhắn</label>
+                                                      <input type="text" class="form-control" name="content">
+                                                      <div id="emailHelp" class="form-text">Gửi câu hỏi cho tư vấn viên,
+                                                         giải đáp thắc mắc của bạn!</div>
+                                                   </div>
+                                                   <button type="submit" class="btn btn-primary">Gửi</button>
+                                                </form>
+                                             </div>
+                                             <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                   data-bs-dismiss="modal">Đóng</button>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <!-- <button type="button" class="btn btn-primary btn-xs">
+                                       <i class="fa fa-user"> </i> View Profile
+                                    </button> -->
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <%} %>
+                     <%}) %>
+                     <!-- end column contact blog -->
+
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <%- include ('layouts/footer') -%>

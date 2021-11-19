@@ -55,10 +55,27 @@ exports.viewHome = (req, res) => {
 
 // Contact start here
 exports.viewContact = (req, res) => {
-    res.render('contact', {
-        title: 'Liên hệ'
+    let sql = 'SELECT * FROM school_staff s JOIN consultant c ON s.ID =c.ID JOIN consulting_field ON s.ID = consultant_id'
+    connection.query(sql, (err, consultants) => {
+        // When done with the connection, release it
+        if (!err) {
+            res.render('contact', {
+                title: 'Liên hệ',
+                consultants: consultants
+            });
+        } else {
+            console.log(err);
+        }
+
     });
+
 }
+exports.viewChat = (req, res) => {
+    res.render('chat', {
+        title: 'Chat'
+    })
+}
+
 
 // Event start here
 exports.viewEvent = (req, res) => {

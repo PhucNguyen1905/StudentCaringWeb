@@ -9,7 +9,7 @@ route.get('/', isStudent, studentController.viewHome);
 
 // This is for Contact function
 route.get('/contact', isStudent, studentController.viewContact);
-
+route.get('/chat', studentController.viewChat);
 // This is for Event function
 route.get('/event', isStudent, studentController.viewEvent)
 route.get('/student-event', isStudent, studentController.viewMyEvent)
