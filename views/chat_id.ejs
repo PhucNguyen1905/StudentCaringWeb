@@ -108,7 +108,7 @@
                            <% if(m.qoa == 0){%>
                            <div class="chat-message-right pb-4">
                               <div>
-                                 <img src="/images/logo/avatar.png" class="rounded-circle mr-1" alt="Chris Wood"
+                                 <img src="<%= user.avatarURL %>" class="rounded-circle mr-1" alt="Chris Wood"
                                     width="40" height="40">
                                  <div class="text-muted small text-nowrap"><%= m.time %></div>
                                  <div class="text-muted small text-nowrap"><%= convertDate(m.Day) %></div>

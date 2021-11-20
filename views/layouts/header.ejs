@@ -49,8 +49,8 @@
                     <div class="sidebar_user_info">
                         <div class="icon_setting"></div>
                         <div class="user_profle_side">
-                            <div class="user_img"><img class="img-responsive" src="/images/layout_img/user_img.jpg"
-                                    alt="#" /></div>
+                            <div class="user_img"><img class="img-responsive" src="<%= user.avatarURL %>" alt="#" />
+                            </div>
                             <div class="user_info">
                                 <h6><%= user.lname %> <%= user.fname %></h6>
                                 <p><span class="online_animation"></span> Online</p>
@@ -117,9 +117,8 @@
                                     <ul class="user_profile_dd">
                                         <li>
                                             <a class="dropdown-toggle" data-toggle="dropdown"><img
-                                                    class="img-responsive rounded-circle"
-                                                    src="/images/layout_img/user_img.jpg" alt="#" /><span
-                                                    class="name_user"><%= user.fname %></span></a>
+                                                    class="img-responsive rounded-circle" src="<%= user.avatarURL %>"
+                                                    alt="#" /><span class="name_user"><%= user.fname %></span></a>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="profile.html">My Profile</a>
                                                 <a class="dropdown-item" href="/edit-info">Settings</a>
