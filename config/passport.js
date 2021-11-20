@@ -13,14 +13,14 @@ const connection = mysql.createPool({
 
 module.exports = function (passport) {
     passport.use(new LocalStrategy(function (username, password, done) {
-        connection.query('SELECT * FROM student WHERE Edu_mail = ?', [username], (err, students) => {
+        connection.query('SELECT * FROM accounts WHERE Edu_mail = ?', [username], (err, accounts) => {
             if (err) throw err;
-            if (students.length == 0)
+            if (accounts.length == 0)
                 return done(null, false, { message: 'No user found!' });
-            bcrypt.compare(password, students[0].password, function (err, isMatch) {
+            bcrypt.compare(password, accounts[0].password, function (err, isMatch) {
                 if (err) throw err;
-                if (password == students[0].password) {
-                    return done(null, students[0])
+                if (password == accounts[0].password) {
+                    return done(null, accounts[0])
                 } else {
                     return done(null, false, { message: 'Wrong password' });
                 }
@@ -32,9 +32,15 @@ module.exports = function (passport) {
         done(null, user.id);
     })
     passport.deserializeUser(function (id, done) {
-        connection.query('SELECT * FROM student WHERE id = ?', [id], (err, students) => {
-            done(err, students[0]);
-        })
+        if (id > 1000) {
+            connection.query('SELECT * FROM student WHERE id = ?', [id], (err, students) => {
+                done(err, students[0]);
+            })
+        } else {
+            connection.query('SELECT * FROM school_staff WHERE id = ?', [id], (err, staffs) => {
+                done(err, staffs[0]);
+            })
+        }
     })
 
 

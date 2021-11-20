@@ -27,7 +27,7 @@ app.use(session({
 }))
 
 // Passport config
-require('./config/passport_student')(passport);
+require('./config/passport')(passport);
 // Passport middlware
 app.use(passport.initialize());
 app.use(passport.session());
