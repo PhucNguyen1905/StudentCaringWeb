@@ -56,10 +56,10 @@
                     <div class="sidebar_user_info">
                         <div class="icon_setting"></div>
                         <div class="user_profle_side">
-                            <div class="user_img"><img class="img-responsive" src="/images/layout_img/user_img.jpg"
+                            <div class="user_img"><img class="img-responsive" src="/images/logo/staff_avatar.png"
                                     alt="#" /></div>
                             <div class="user_info">
-                                <h6>Phúc Nguyễn</h6>
+                                <h6><%= user.lname %> <%= user.fname %></h6>
                                 <p><span class="online_animation"></span> Online</p>
                             </div>
                         </div>
@@ -97,9 +97,6 @@
                             </ul>
                         </li>
 
-                        <li><a href="/edit-info"><i class="fa fa-cog red_color"></i> <span>Chỉnh sửa thông
-                                    tin</span></a>
-                        </li>
                     </ul>
                 </div>
             </nav>
@@ -127,13 +124,13 @@
                                         <li>
                                             <a class="dropdown-toggle" data-toggle="dropdown"><img
                                                     class="img-responsive rounded-circle"
-                                                    src="/images/layout_img/user_img.jpg" alt="#" /><span
-                                                    class="name_user">Phúc</span></a>
+                                                    src="/images/logo/staff_avatar.png" alt="#" /><span
+                                                    class="name_user"><%= user.fname %></span></a>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="profile.html">My Profile</a>
                                                 <a class="dropdown-item" href="settings.html">Settings</a>
                                                 <a class="dropdown-item" href="help.html">Help</a>
-                                                <a class="dropdown-item" href="#"><span>Log Out</span> <i
+                                                <a class="dropdown-item" href="/staff/logout"><span>Log Out</span> <i
                                                         class="fa fa-sign-out"></i></a>
                                             </div>
                                         </li>

@@ -25,14 +25,18 @@
                             <div class="col-lg-12">
                                 <div class="full dis_flex center_text">
                                     <div class="profile_img"><img width="180" class="rounded-circle"
-                                            src="/images/layout_img/user_img.jpg" alt="#" /></div>
+                                            src="/images/logo/staff_avatar.png" alt="#" /></div>
                                     <div class="profile_contant">
                                         <div class="contact_inner">
-                                            <h3>John Smith</h3>
-                                            <p><strong>About: </strong>Frontend Developer</p>
+                                            <h3><%= user.lname %> <%= user.fname %></h3>
+                                            <% if(user.id <=10){%>
+                                            <p><strong>Chức vụ: </strong>Nhân viên Khoa</p>
+                                            <%}else{%>
+                                            <p><strong>Chức vụ: </strong>Tư vấn viên</p>
+                                            <%} %>
                                             <ul class="list-unstyled">
-                                                <li><i class="fa fa-envelope-o"></i> : test@gmail.com</li>
-                                                <li><i class="fa fa-phone"></i> : 987 654 3210</li>
+                                                <li><i class="fa fa-envelope-o"></i> : <%= user.Edu_mail %> </li>
+
                                             </ul>
                                         </div>
                                         <div class="user_progress_bar">
