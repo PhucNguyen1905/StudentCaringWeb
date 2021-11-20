@@ -9,9 +9,12 @@ const connection = mysql.createPool({
     database: process.env.DB_NAME
 });
 
+let STAFF;
 
 // This is for Sự kiện function
-exports.viewEvet = (req, res) => {
+exports.viewEvent = (req, res) => {
+    STAFF = res.locals.user;
+    console.log(STAFF)
     connection.query('SELECT * FROM event', (err, events) => {
         // When done with the connection, release it
         if (!err) {
@@ -54,7 +57,8 @@ exports.addEvent = (req, res) => {
                         title: 'Danh sách sự kiện',
                         hidden: '',
                         message: 'Sự kiện đã được đăng tải',
-                        events: events
+                        events: events,
+                        user: STAFF
                     })
                 } else {
                     console.log(err);
@@ -103,7 +107,8 @@ exports.editEvent = (req, res) => {
                         title: 'Danh sách sự kiện',
                         hidden: '',
                         message: 'Sự kiện đã được cập nhật',
-                        events: events
+                        events: events,
+                        user: STAFF
                     })
                 } else {
                     console.log(err);

@@ -19,7 +19,7 @@ route.get('/noti/status-on/:id', isStaff, notiController.statusOn);
 route.get('/noti/status-off/:id', isStaff, notiController.statusOff);
 
 // This is for Sự kiện
-route.get('/list-event', isStaff, eventController.viewEvet);
+route.get('/list-event', isStaff, eventController.viewEvent);
 route.get('/add-event', isStaff, eventController.viewAddEvent);
 route.post('/add-event', eventController.addEvent);
 route.get('/event/edit-event/:id', isStaff, eventController.viewEditEvent);

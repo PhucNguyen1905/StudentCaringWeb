@@ -49,7 +49,7 @@
                 <div class="sidebar_blog_1">
                     <div class="sidebar-header">
                         <div class="logo_section">
-                            <a href="/staff"><img class="logo_icon img-responsive" src="/images/logo/logo.png"
+                            <a href="/consul"><img class="logo_icon img-responsive" src="/images/logo/logo.png"
                                     alt="#" /></a>
                         </div>
                     </div>
@@ -71,30 +71,15 @@
 
                         <li>
                             <a href="#info" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
-                                    class="fa fa-dashboard yellow_color"></i> <span>Quản lý thông báo</span></a>
+                                    class="fa fa-dashboard yellow_color"></i> <span>Cơ hội việc làm</span></a>
                             <ul class="collapse list-unstyled" id="info">
-                                <li><a href="/staff/list-noti">> <span>Danh sách</span></a></li>
-                                <li><a href="/staff/add-noti">> <span>Thêm thông báo mới</span></a></li>
+                                <li><a href="/consul/list-intern">> <span>Danh sách việc làm</span></a></li>
+                                <li><a href="/consul/add-intern">> <span>Thêm thông việc làm mới</span></a></li>
                             </ul>
                         </li>
                         <li>
-                            <a href="#element" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
-                                    class="fa fa-table purple_color2"></i> <span>Quản lý sự kiện</span></a>
-                            <ul class="collapse list-unstyled" id="element">
-                                <li><a href="/staff/list-event">> <span>Danh sách sự kiện</span></a></li>
-                                <li><a href="/staff/add-event">> <span>Thêm sự kiện mới</span></a></li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="#apps" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
-                                    class="fa fa-briefcase blue1_color"></i> <span>Quản lý yêu cầu</span></a>
-                            <ul class="collapse list-unstyled" id="apps">
-                                <li><a href="/print">> <span>Danh sách in giấy tờ</span></a></li>
-                                <li><a href="calendar.html">> <span>Xét giảm học phí</span></a></li>
-                                <li><a href="media_gallery.html">> <span>Yêu cầu phúc khảo</span></a></li>
-                                <li><a href="media_gallery.html">> <span>Xem phản ánh chất lượng</span></a></li>
-                            </ul>
+                            <a href="/consul/chat">
+                                <i class="fa fa-paper-plane red_color"></i> <span>Tư vấn Sinh viên</span></a>
                         </li>
 
                     </ul>
@@ -114,7 +99,8 @@
                                 <div class="icon_info">
                                     <ul>
                                         <!-- Edit here to update new attention -->
-                                        <li><a href="#"><i class="fa fa-envelope-o"></i><span class="badge"></span></a>
+                                        <li><a href="/consul/chat"><i class="fa fa-envelope-o"></i><span
+                                                    class="badge"></span></a>
                                         </li>
                                     </ul>
                                     <ul class="user_profile_dd">
@@ -123,10 +109,8 @@
                                                     class="img-responsive rounded-circle" src="<%= user.avatarURL %>"
                                                     alt="#" /><span class="name_user"><%= user.fname %></span></a>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="profile.html">My Profile</a>
-                                                <a class="dropdown-item" href="settings.html">Settings</a>
-                                                <a class="dropdown-item" href="help.html">Help</a>
-                                                <a class="dropdown-item" href="/staff/logout"><span>Log Out</span> <i
+                                                <a class="dropdown-item" href="/consul">My Profile</a>
+                                                <a class="dropdown-item" href="/consul/logout"><span>Log Out</span> <i
                                                         class="fa fa-sign-out"></i></a>
                                             </div>
                                         </li>

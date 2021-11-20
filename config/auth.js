@@ -13,3 +13,11 @@ exports.isStaff = function (req, res, next) {
         res.redirect('/staff/login');
     }
 }
+
+exports.isConsul = function (req, res, next) {
+    if (req.isAuthenticated()) {
+        next();
+    } else {
+        res.redirect('/consul/login');
+    }
+}

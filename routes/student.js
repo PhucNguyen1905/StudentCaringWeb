@@ -11,6 +11,8 @@ route.get('/', isStudent, studentController.viewHome);
 route.get('/contact', isStudent, studentController.viewContact);
 route.post('/chat/send-mess/:id', studentController.sendMessage);
 route.get('/chat', studentController.viewChat);
+route.get('/chat/detail/:id', studentController.viewChatByID);
+
 // This is for Event function
 route.get('/event', isStudent, studentController.viewEvent)
 route.get('/student-event', isStudent, studentController.viewMyEvent)

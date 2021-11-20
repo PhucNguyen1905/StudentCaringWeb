@@ -9,22 +9,16 @@ const connection = mysql.createPool({
     database: process.env.DB_NAME
 });
 
-let STAFF;
-
-exports.viewHome = (req, res) => {
-    STAFF = res.locals.user;
-    res.render('staff/staff_index', {
-        title: 'Home'
-    })
-}
+let CONSULTANT;
 
 // This is for Thông báo function
-exports.viewNotification = (req, res) => {
+exports.viewIntern = (req, res) => {
+    CONSULTANT = res.locals.user;
     connection.query('SELECT * FROM main_notification', (err, notis) => {
         // When done with the connection, release it
         if (!err) {
-            res.render('staff/list_notification', {
-                title: 'Danh sách thông báo',
+            res.render('consultant/list_intern', {
+                title: 'Danh sách việc làm',
                 hidden: 'hidden',
                 message: '',
                 notis: notis
@@ -35,13 +29,13 @@ exports.viewNotification = (req, res) => {
 
     });
 }
-exports.viewAddNotification = (req, res) => {
-    res.render('staff/add_notification', {
-        title: 'Thêm thông báo mới'
+exports.viewAddIntern = (req, res) => {
+    res.render('consultant/add_intern', {
+        title: 'Thêm cơ hội việc làm'
     })
 }
-// POST add noti
-exports.addNotification = (req, res) => {
+// POST add Intern
+exports.addIntern = (req, res) => {
     const title = req.body.title;
     const forwho = req.body.forwho;
     const time_happen = req.body.time_happen;
@@ -54,12 +48,12 @@ exports.addNotification = (req, res) => {
             connection.query('SELECT * FROM main_notification', (err, notis) => {
                 // When done with the connection, release it
                 if (!err) {
-                    res.render('staff/list_notification', {
-                        title: 'Danh sách thông báo',
+                    res.render('consultant/list_intern', {
+                        title: 'Cơ hội việc làm',
                         hidden: '',
-                        message: 'Thông báo đã được đăng tải',
+                        message: 'Cơ hội việc làm đã được đăng tải',
                         notis: notis,
-                        user: STAFF
+                        user: CONSULTANT
                     })
                 } else {
                     console.log(err);
@@ -72,14 +66,14 @@ exports.addNotification = (req, res) => {
     })
 
 }
-// View Edit noti
-exports.viewEditNoti = (req, res) => {
+// View Edit intern
+exports.viewEditIntern = (req, res) => {
     let id = req.params.id;
     connection.query('SELECT * FROM main_notification WHERE id = ?', [id], (err, notis) => {
         // When done with the connection, release it
         if (!err) {
-            res.render('staff/edit_notification', {
-                title: 'Chỉnh sửa thông báo',
+            res.render('consultant/edit_intern', {
+                title: 'Chỉnh sửa việc làm',
                 noti: notis[0]
             })
         } else {
@@ -88,8 +82,8 @@ exports.viewEditNoti = (req, res) => {
     });
 
 }
-// POST edit noti
-exports.editNoti = (req, res) => {
+// POST edit Intern
+exports.editIntern = (req, res) => {
     let id = req.params.id;
     const title = req.body.title;
     const forwho = req.body.forwho;
@@ -103,12 +97,12 @@ exports.editNoti = (req, res) => {
             connection.query('SELECT * FROM main_notification', (err, notis) => {
                 // When done with the connection, release it
                 if (!err) {
-                    res.render('staff/list_notification', {
-                        title: 'Danh sách thông báo',
+                    res.render('consultant/list_intern', {
+                        title: 'Cơ hội việc làm',
                         hidden: '',
-                        message: 'Thông báo đã được cập nhật',
+                        message: 'Cơ hội việc làm đã được cập nhật',
                         notis: notis,
-                        user: STAFF
+                        user: CONSULTANT
                     })
                 } else {
                     console.log(err);
@@ -123,8 +117,8 @@ exports.editNoti = (req, res) => {
 
 
 }
-// Delete noti
-exports.deleteNoti = (req, res) => {
+// Delete Intern
+exports.deleteIntern = (req, res) => {
     let id = req.params.id;
     connection.query('DELETE FROM main_notification WHERE id = ?', [id], (error, result) => {
         // When done with the connection, release it
@@ -132,10 +126,10 @@ exports.deleteNoti = (req, res) => {
             connection.query('SELECT * FROM main_notification', (err, notis) => {
                 // When done with the connection, release it
                 if (!err) {
-                    res.render('staff/list_notification', {
-                        title: 'Danh sách thông báo',
+                    res.render('consultant/list_intern', {
+                        title: 'Cơ hội việc làm',
                         hidden: '',
-                        message: 'Đã xóa một thông báo',
+                        message: 'Đã xóa một việc làm',
                         notis: notis
                     })
                 } else {
@@ -158,10 +152,10 @@ exports.statusOn = (req, res) => {
             connection.query('SELECT * FROM main_notification', (err, notis) => {
                 // When done with the connection, release it
                 if (!err) {
-                    res.render('staff/list_notification', {
-                        title: 'Danh sách thông báo',
+                    res.render('consultant/list_intern', {
+                        title: 'Cơ hội việc làm',
                         hidden: '',
-                        message: 'Thông báo đã được hiện lên trang chủ',
+                        message: 'Việc làm đã được hiện lên trang chủ',
                         notis: notis
                     })
                 } else {
@@ -184,10 +178,10 @@ exports.statusOff = (req, res) => {
             connection.query('SELECT * FROM main_notification', (err, notis) => {
                 // When done with the connection, release it
                 if (!err) {
-                    res.render('staff/list_notification', {
-                        title: 'Danh sách thông báo',
+                    res.render('consultant/list_intern', {
+                        title: 'Cơ hội việc làm',
                         hidden: '',
-                        message: 'Thông báo đã được ẩn',
+                        message: 'Việc làm đã được ẩn',
                         notis: notis
                     })
                 } else {

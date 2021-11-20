@@ -1,4 +1,4 @@
-<%- include ('layouts/header') -%>
+<%- include ('../layouts/consul_header') -%>
 <style>
    .chat-online {
       color: #34ce57
@@ -71,14 +71,14 @@
                            </div>
                         </div>
                      </div>
-                     <% consultants.forEach(function(c){%>
-                     <a href="/chat/detail/<%= c.ID %>" class="list-group-item list-group-item-action border-0">
+                     <% students.forEach(function(s){%>
+                     <a href="/consul/chat/detail/<%= s.id %>" class="list-group-item list-group-item-action border-0">
                         <div class="badge bg-success float-right"></div>
                         <div class="d-flex align-items-start">
-                           <img src="<%= c.imageURL %>" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40"
-                              height="40">
+                           <img src="/images/logo/avatar.png" class="rounded-circle mr-1" alt="Vanessa Tucker"
+                              width="40" height="40">
                            <div class="flex-grow-1 ml-3">
-                              <%= c.lname %> <%= c.fname %>
+                              <%= s.lname %> <%= s.fname %>
                               <div class="small"><span class="fas fa-circle chat-online"></span> Online</div>
                            </div>
                         </div>
@@ -92,11 +92,11 @@
                      <div class="py-2 px-4 border-bottom d-none d-lg-block">
                         <div class="d-flex align-items-center py-1">
                            <div class="position-relative">
-                              <img src="<%= consultants[0].imageURL %>" class="rounded-circle mr-1"
-                                 alt="<%= consultants[0].fname %>" width="40" height="40">
+                              <img src="/images/logo/avatar.png" class="rounded-circle mr-1"
+                                 alt="<%= detailStudent.fname %>" width="40" height="40">
                            </div>
                            <div class="flex-grow-1 pl-3">
-                              <strong><%= consultants[0].lname %> <%= consultants[0].fname %></strong>
+                              <strong><%= detailStudent.lname %> <%= detailStudent.fname %></strong>
                               <div class="text-muted small"><em>Đang chờ...</em></div>
                            </div>
 
@@ -106,13 +106,13 @@
                      <div class="position-relative">
                         <div class="chat-messages p-4" style="height: 35rem;">
                            <% messages.forEach(function(m){%>
-                           <% if(m.qoa == 0){%>
+                           <% if(m.qoa == 1){%>
                            <div class="chat-message-right pb-4">
                               <div>
-                                 <img src="/images/logo/avatar.png" class="rounded-circle mr-1" alt="Chris Wood"
+                                 <img src="<%= user.avatarURL %>" class="rounded-circle mr-1" alt="Chris Wood"
                                     width="40" height="40">
                                  <div class="text-muted small text-nowrap"><%= m.time %></div>
-                                 <div class="text-muted small text-nowrap "><%= convertDate(m.Day) %></div>
+                                 <div class="text-muted small text-nowrap"><%= convertDate(m.Day) %></div>
                               </div>
                               <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
                                  <div class="font-weight-bold mb-1">Bạn</div>
@@ -122,14 +122,15 @@
                            <%}else{%>
                            <div class="chat-message-left pb-4">
                               <div>
-                                 <img src="<%= consultants[0].imageURL %>" class="rounded-circle mr-1"
-                                    alt="Sharon Lessman" width="40" height="40">
+                                 <img src="/images/logo/avatar.png" class="rounded-circle mr-1" alt="Sharon Lessman"
+                                    width="40" height="40">
                                  <div class="text-muted small text-nowrap"><%= m.time %></div>
                                  <div class="text-muted small text-nowrap "><%= convertDate(m.Day) %></div>
                               </div>
                               <div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
-                                 <div class="font-weight-bold mb-1"><%= consultants[0].lname %>
-                                    <%= consultants[0].fname %></div>
+                                 <div class="font-weight-bold mb-1"><%= detailStudent.lname %>
+                                    <%= detailStudent.fname %>
+                                 </div>
                                  <%= m.content %>
                               </div>
                            </div>
@@ -143,7 +144,7 @@
                      </div>
 
                      <div class="flex-grow-0 py-3 px-4 border-top">
-                        <form method="post" action="/chat/send-mess/<%= consultants[0].id %>">
+                        <form method="post" action="/consul/chat/send-mess/<%= detailStudent.id %>">
                            <div class="input-group">
                               <input type="text" name="content" class="form-control" placeholder="Nhập tin nhắn">
                               <button type="submit" class="btn btn-primary">Gửi</button>
@@ -161,4 +162,4 @@
 </div>
 <!-- end column contact blog -->
 
-<%- include ('layouts/footer') -%>
+<%- include ('../layouts/footer') -%>

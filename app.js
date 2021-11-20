@@ -40,12 +40,17 @@ app.get('*', (req, res, next) => {
 // Router
 const studentRoute = require('./routes/student');
 const staffRoute = require('./routes/fstaff');
+const consultantRoute = require('./routes/consultant');
 
 app.use('/staff', staffRoute);
+app.use('/consul', consultantRoute);
 app.use('/', studentRoute);
 
 let port = process.env.PORT || 8080;
 
 app.listen(port, () => {
     console.log("Running on port: " + port);
+    console.log("Student: http://localhost:8080");
+    console.log("Staff: http://localhost:8080/staff");
+    console.log("Consultant: http://localhost:8080/consul");
 });

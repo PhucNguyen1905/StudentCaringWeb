@@ -3,6 +3,7 @@ const mysql = require("mysql");
 //Connection pool
 const connection = mysql.createPool({
     connectionLimit: 100,
+    multipleStatements: true,
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASS,
@@ -75,30 +76,34 @@ exports.viewContact = (req, res) => {
 }
 // POST send message
 exports.sendMessage = (req, res) => {
-    let conID = req.params.id;
+    let consID = req.params.id;
     let content = req.body.content;
     let stuID = STUDENT.id;
     let sql = 'INSERT INTO contents(Consultant_ID, student_id, content, qoa) VALUES (?,?,?,?)';
-    connection.query(sql, [conID, stuID, content, 0], (err, results) => {
+    connection.query(sql, [consID, stuID, content, 0], (err, resul) => {
         // When done with the connection, release it
-        if (!err) {
-            let sql = 'SELECT * FROM school_staff s JOIN consultant c ON s.ID =c.ID JOIN consulting_field ON s.ID = consultant_id'
-            connection.query(sql, (err, consultants) => {
-                // When done with the connection, release it
-                if (!err) {
-                    res.render('contact', {
-                        title: 'Liên hệ',
-                        consultants: consultants,
-                        user: STUDENT
-                    });
-                } else {
-                    console.log(err);
-                }
+        if (err) throw err;
+        let conSql = 'SELECT * FROM school_staff s WHERE s.ID IN (SELECT Consultant_ID FROM contents WHERE student_id = ? ORDER BY id DESC)'
+        connection.query(conSql, [stuID], (error, consultants) => {
+            // When done with the connection, release it
+            if (error) throw error;
+            let latestConsID = consID;
+            let messSql = 'SELECT * FROM contents WHERE student_id = ? AND Consultant_ID = ?; SELECT * FROM school_staff WHERE ID = ?;'
+            connection.query(messSql, [stuID, latestConsID, consID], (err, results) => {
+                if (err) throw err;
+                messages = results[0];
+                detailConsultants = results[1];
+                res.render('chat_id', {
+                    title: 'Tin nhắn',
+                    user: STUDENT,
+                    consultants: consultants,
+                    messages: messages,
+                    detailConsultant: detailConsultants[0],
+                    convertDate: convertDate
+                })
+            })
 
-            });
-        } else {
-            console.log(err);
-        }
+        });
 
     });
 
@@ -106,19 +111,48 @@ exports.sendMessage = (req, res) => {
 
 exports.viewChat = (req, res) => {
     let stuID = STUDENT.id;
-    let conSql = 'SELECT * FROM school_staff s JOIN consultant c ON s.ID = c.id AND s.ID IN (SELECT Consultant_ID FROM contents WHERE student_id = ?)'
+    let conSql = 'SELECT * FROM school_staff s JOIN consultant c ON s.ID = c.id AND s.ID IN (SELECT Consultant_ID FROM contents WHERE student_id = ? ORDER BY id DESC)'
     connection.query(conSql, [stuID], (error, consultants) => {
         // When done with the connection, release it
         if (error) throw error;
-        let firstConsID = consultants[0].id;
+        let latestConsID = consultants[0].id;
         let messSql = 'SELECT * FROM contents WHERE student_id = ? AND Consultant_ID = ?'
-        connection.query(messSql, [stuID, firstConsID], (err, messsages) => {
+        connection.query(messSql, [stuID, latestConsID], (err, messsages) => {
             if (err) throw err;
             res.render('chat', {
                 title: 'Tin nhắn',
                 user: STUDENT,
                 consultants: consultants,
-                messages: messsages
+                messages: messsages,
+                convertDate: convertDate
+            })
+        })
+
+    });
+
+
+}
+
+exports.viewChatByID = (req, res) => {
+    let consID = parseInt(req.params.id);
+    let stuID = STUDENT.id;
+    let conSql = 'SELECT * FROM school_staff s WHERE s.ID IN (SELECT Consultant_ID FROM contents WHERE student_id = ? ORDER BY id DESC)'
+    connection.query(conSql, [stuID], (error, consultants) => {
+        // When done with the connection, release it
+        if (error) throw error;
+        let latestConsID = consID;
+        let messSql = 'SELECT * FROM contents WHERE student_id = ? AND Consultant_ID = ?; SELECT * FROM school_staff WHERE ID = ?;'
+        connection.query(messSql, [stuID, latestConsID, consID], (err, results) => {
+            if (err) throw err;
+            messages = results[0];
+            detailConsultants = results[1];
+            res.render('chat_id', {
+                title: 'Tin nhắn',
+                user: STUDENT,
+                consultants: consultants,
+                messages: messages,
+                detailConsultant: detailConsultants[0],
+                convertDate: convertDate
             })
         })
 

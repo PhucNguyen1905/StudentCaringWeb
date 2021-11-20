@@ -1,0 +1,136 @@
+<%- include ('../layouts/consul_header') -%>
+
+<!-- dashboard inner -->
+<div class="midde_cont">
+   <div class="container-fluid">
+      <div>
+         <div class="alert alert-success alert-dismissible fade show mt-4" <%= hidden %> role="alert">
+            <strong>Thành công!</strong> <%= message %>.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+         </div>
+      </div>
+      <div class="row column_title">
+         <div class="col-md-12">
+            <div class="page_title">
+               <h2>Danh sách các việc làm</h2>
+            </div>
+         </div>
+      </div>
+      <div>
+         <a href="/consul/add-intern" class="btn btn-success mb-2">Thêm việc làm mới</a>
+      </div>
+
+      <div class="listNoti">
+         <table id="datatablesSimple" style="background-color: #FFF5FD;">
+            <thead>
+               <tr>
+                  <th>STT</th>
+                  <th>Tiêu đề</th>
+                  <th>Thời gian ẩn</th>
+                  <th style="text-align: center;">Thao tác</th>
+                  <th style="text-align: center;">Ẩn/Hiện</th>
+               </tr>
+            </thead>
+            <tfoot>
+               <tr>
+                  <th>STT</th>
+                  <th>Tiêu đề</th>
+                  <th>Thời gian ẩn</th>
+                  <th style="text-align: center;">Thao tác</th>
+                  <th style="text-align: center;">Ẩn/Hiện</th>
+               </tr>
+            </tfoot>
+            <tbody>
+               <% let i = 1; %>
+               <% notis.forEach(function(noti){%>
+               <tr>
+                  <td><%= i %> </td>
+                  <td><%= noti.title %></td>
+                  <td><%= noti.etime %></td>
+                  <td style="text-align: center;">
+                     <a class=" link-info" style="text-decoration: none;"
+                        href="/consul/intern/edit-intern/<%=noti.id%>">
+                        <i class="fa fa-edit"></i>
+                        Sửa
+                     </a>
+                     -
+                     <a class="link-danger" style="text-decoration: none; color: red;" data-bs-toggle="modal"
+                        data-bs-target="#deleteModal<%= noti.id %>">
+                        <i class="fa fa-trash"></i>
+                        Xóa
+                     </a>
+                     <!-- Modal -->
+                     <div class="modal fade" id="deleteModal<%= noti.id %>" tabindex="-1"
+                        aria-labelledby="deleteModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                           <div class="modal-content">
+                              <div class="modal-header">
+                                 <h5 class="modal-title" id="deleteModalLabel">Xóa việc làm</h5>
+                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                 Chắc chắn xóa việc làm này?
+                              </div>
+                              <div class="modal-footer">
+                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                 <button type="submit" class="btn btn-primary">
+                                    <a style="text-decoration: none; color: white;"
+                                       href="/consul/intern/delete-intern/<%=noti.id%>">Xóa</a>
+                                 </button>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </td>
+                  <td style="text-align: center;">
+                     <% if(noti.nstatus == 'off'){%>
+                     <a class=" link-info" style="text-decoration: none;" href="/consul/intern/status-on/<%=noti.id%>">
+                        <i class="fa fa-eye-slash"></i>
+                     </a>
+                     <%}else{%>
+                     <a class="link-danger" style="text-decoration: none; font-size: 1.5rem; color: #5C7AEA;"
+                        data-bs-toggle="modal" data-bs-target="#statusModal<%= noti.id %>">
+                        <i class="fa fa-eye"></i>
+                     </a>
+                     <!-- Modal -->
+                     <div class="modal fade" id="statusModal<%= noti.id %>" tabindex="-1"
+                        aria-labelledby="statusModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                           <div class="modal-content">
+                              <div class="modal-header">
+                                 <h5 class="modal-title" id="statusModalLabel">Ẩn việc làm</h5>
+                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                 Chắc chắn ẩn việc làm này khỏi Trang chủ?
+                              </div>
+                              <div class="modal-footer">
+                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                 <button type="submit" class="btn btn-primary">
+                                    <a style="text-decoration: none; color: white;"
+                                       href="/consul/intern/status-off/<%=noti.id%>">Ẩn</a>
+                                 </button>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+
+                     <%} %>
+
+                  </td>
+
+               </tr>
+               <% i+=1; %>
+               <%}) %>
+
+            </tbody>
+         </table>
+      </div>
+
+   </div>
+
+   <!-- end dashboard inner -->
+
+   <%- include ('../layouts/footer') -%>
