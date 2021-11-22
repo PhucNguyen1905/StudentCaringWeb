@@ -27,6 +27,7 @@
                   <th>Ảnh</th>
                   <th>Tiêu đề</th>
                   <th>Thời gian ẩn</th>
+                  <th style="text-align: center;">DS đăng ký</th>
                   <th style="text-align: center;">Thao tác</th>
                   <th style="text-align: center;">Ẩn/Hiện</th>
                </tr>
@@ -37,6 +38,7 @@
                   <th>Ảnh</th>
                   <th>Tiêu đề</th>
                   <th>Thời gian ẩn</th>
+                  <th style="text-align: center;">DS đăng ký</th>
                   <th style="text-align: center;">Thao tác</th>
                   <th style="text-align: center;">Ẩn/Hiện</th>
                </tr>
@@ -49,6 +51,10 @@
                   <td><img src="<%= event.image_url %>" alt="" style="height: 5rem; width: 6rem;"></td>
                   <td><%= event.title %></td>
                   <td><%= event.etime %></td>
+                  <td style="text-align: center;"><a class=" link-success" style="text-decoration: none;"
+                        href="/staff/event/list-student/<%=event.id%>">
+                        <i class="fa fa-list"></i>
+                     </a></td>
                   <td style="text-align: center;">
                      <a class=" link-info" style="text-decoration: none;" href="/staff/event/edit-event/<%=event.id%>">
                         <i class="fa fa-edit"></i>

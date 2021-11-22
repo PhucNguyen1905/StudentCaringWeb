@@ -10,7 +10,7 @@ exports.viewLogin = (req, res) => {
 
 exports.login = (req, res, next) => {
     passport.authenticate('local', {
-        successRedirect: '/',
+        successRedirect: '/index',
         failureRedirect: '/login',
         failureFlash: false
     })(req, res, next);

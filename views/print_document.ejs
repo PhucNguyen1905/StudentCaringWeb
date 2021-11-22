@@ -1,98 +1,189 @@
 <%- include ('layouts/header') -%>
-
-<!-- dashboard inner -->
-<div class="midde_cont">
-   <div class="container-fluid">
-      <div class="row column_title">
-         <div class="col-md-12">
-            <div class="page_title">
-               <h2>In giấy tờ</h2>
+<style>
+    a i {
+        color: white;
+    }
+</style>
+<!-- modal xem các document đã đăng ký và trạng thái của chúng -->
+<div class="modal fade" id="view" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Danh sách yêu cầu đã gửi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-         </div>
-      </div>
+            <div class="modal-body">
+                <table class="table" style="font-weight: 500; color: black;">
+                    <thead style="color: blue; font-weight: 700;">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Loại giấy tờ</th>
+                            <th scope="col">Trạng thái</th>
 
-      <div style="background-color: #D1E8E4; padding: 1rem;">
-         <form>
-            <label for="" style="font-size: 1.5rem;"><strong>Thông tin cá nhân</strong></label>
-            <div class="row">
-               <div class="col">
-                  <label for="">Họ và Tên</label>
-                  <input disabled="disabled" type="text" class="form-control"
-                     placeholder="<%= user.lname %> <%= user.fname %>">
-               </div>
-               <div class="col">
-                  <label for="">Mã số sinh viên</label>
-                  <input disabled="disabled" type="text" class="form-control" placeholder="<%= user.id %>">
-               </div>
-               <div class="col">
-                  <label for="">Ngày sinh</label>
-                  <input disabled="disabled" type="text" class="form-control"
-                     placeholder="<%= convertDate(user.DayOfBirth) %>">
-               </div>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% var i = 1 %>
+                        <% requestData.forEach((request)=>{ %>
+                        <tr>
+                            <th scope="row">
+                                <%= i %>
+                            </th>
+                            <td>
+                                <%= request.docType %>
+                            </td>
+                            <td>
+                                <%= request.status %>
+                            </td>
+                        </tr>
+                        <% i += 1 %>
+                        <% }) %>
+
+                    </tbody>
+                </table>
+                <p style="color: black; font-weight: 600;">Số yêu cầu đã gửi:
+                    <%= requestNumber %>
+                </p>
             </div>
-            <div class="row">
-               <div class="col">
-                  <label for="">Hộ khẩu thường trú</label>
-                  <input disabled="disabled" type="text" class="form-control"
-                     placeholder="<%= user.ApartmentNumber %> <%= user.Street %>, <%= user.province %> ">
-               </div>
-               <div class="col">
-                  <label for="">Hình thức</label>
-                  <input disabled="disabled" type="text" class="form-control" placeholder="<%= user.EduProgram %>">
-               </div>
-               <div class="col">
-                  <label for="">Khoa</label>
-                  <input disabled="disabled" type="text" class="form-control"
-                     placeholder="<%= getFacultyName(user.Faculty_ID) %>">
-               </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
             </div>
-         </form>
-         <h1 style="padding-top: 1rem; font-size: large; padding-bottom: 0; color: red;">Thông tin này sẽ được dùng để
-            in giấy tờ, nếu thông
-            tin không đúng bạn
-            có
-            thể cập nhật <a style="color: blue;" href="/edit-info">tại đây</a>.
-         </h1>
-      </div>
+        </div>
+    </div>
+</div>
 
-      <div style="background-color: #D1E8E4; padding: 1rem; margin-top: 2rem;">
-         <form>
-            <div class="form-group">
-               <label for="">Chọn loại giấy tờ</label>
-               <select class="form-control" name="type">
-                  <option value="1">Thẻ Sinh viên (50.000 VNĐ)</option>
-                  <option value="2">Bảng điểm (30.000 VNĐ)</option>
-                  <option value="3">Bảng điểm Học kỳ (5.000 VNĐ)</option>
-                  <option value="4">Chứng nhận sinh viên</option>
 
-               </select>
+<div class="col-md-12 mt-4 mb-xl-5">
+    <div class="dash_blog">
+        <div class="dash_blog_inner">
+            <div class="dash_head ">
+                <h3><span><i class="fa fa-file-text-o"></i> Đăng ký in giấy tờ</span></h3>
+                <button type="button" class="btn btn-light" data-toggle="modal" data-target="#view">Xem các yêu cầu đã
+                    đăng ký</button>
+                <div style="height:10px"></div>
             </div>
-            <div class="form-row">
-               <div class="form-group col-md-6">
-                  <label for="">Họ và Tên người nhận</label>
-                  <input type="text" class="form-control" name="recvname" placeholder="Họ và tên">
-               </div>
-               <div class="form-group col-md-6">
-                  <label for="">Số điện thoại</label>
-                  <input type="text" class="form-control" name="phone" placeholder="Số điện thoại">
-               </div>
-            </div>
-            <div class="form-group">
-               <label for="inputAddress">Địa chỉ người nhận</label>
-               <input type="text" class="form-control" name="address" placeholder="1234 Main St">
-            </div>
+            <form class="mt-4 container-fluid mt-5" method="post" action="/print">
+                <!-- Name input -->
 
-            <button type="submit" class="btn btn-primary">Xác nhận đăng ký</button>
-         </form>
+                <div class="row">
 
-         <h1 style="padding-top: 1rem; font-size: large; padding-bottom: 0; color: #FFA400;">Do tình hình dịch bệnh
-            Phòng
-            đào tạo mở kênh chuyển phát qua bưu điện, sinh viên cần nhập thông tin gửi
-            chính xác</h1>
-      </div>
+                    <div class="form-outline mb-4 col-xl-4">
+                        <input name="fullName" disabled type="text" id="fullName" class="form-control border-primary"
+                            value="<%= user.lname %> <%= user.fname%>" />
+                        <label class="form-label" for="fullName">Họ và Tên</label>
+                    </div>
 
-   </div>
+                    <!-- Mssv input -->
+                    <div class="form-outline mb-4 col-xl-4">
+                        <input name="mssv" disabled type="text" id="mssv" class="form-control border-primary"
+                            value="<%= user.id %>" />
+                        <label class="form-label" for="mssv">Mã số sinh viên</label>
+                    </div>
 
-   <!-- end dashboard inner -->
+                    <!-- Nhập Ngày sinh -->
+                    <div class="form-outline mb-4 col-xl-4">
+                        <input name="bdate" disabled type="text" id="bdate" class="form-control border-primary"
+                            value="<%= user.id %>" />
+                        <label class="form-label" for="bdate">Ngày sinh</label>
+                    </div>
+                </div>
 
-   <%- include ('layouts/footer') -%>
+                <div class="row">
+
+                    <!-- Nhập hộ khẩu thường trú -->
+                    <div class="form-outline mb-4 col-xl-4">
+                        <input disabled type="text" name="address" id="address" class="form-control border-primary"
+                            value="<%= user.ApartmentNumber %>, <%= user.Street %>, <%= user.province %>" />
+                        <label class="form-label" for="address">Hộ khẩu thường trú</label>
+                    </div>
+
+                    <!-- Chương trình học -->
+                    <div class="form-outline mb-4 col-xl-4">
+                        <input value="<%= user.EduProgram %>" disabled type="text" name="program" id="program"
+                            class="form-control border-primary" />
+                        <label class="form-label" for="program">Chương trình học</label>
+                    </div>
+
+                    <!-- Khoa -->
+                    <div class="form-outline mb-4 col-xl-4">
+                        <input value="<%= facultyData.falName %>" disabled type="text" name="faculty" id="faculty"
+                            class="form-control border-primary" />
+                        <label class="form-label" for="faculty">Khoa</label>
+                    </div>
+                </div>
+
+                <div class="row mb-5 ml-3">
+                    Thông tin này sẽ được dùng để in giấy tờ, nếu thông tin không đúng bạn có thể cập nhật <a
+                        href="/edit-info" style="color: blue;"> Tại đây</a>.
+                </div>
+
+                <div class="row">
+
+                    <div class="form-group col-xl-12 border-primary">
+                        <select class="form-control" id="exampleFormControlSelect1" name="docType">
+                            <option value="Thẻ sinh viên">Thẻ Sinh viên (50.000 VNĐ)</option>
+                            <option value="Bảng điểm">Bảng điểm (30.000 VNĐ)</option>
+                            <option value="Bảng điểm học ky">Bảng điểm Học kỳ (5.000 VNĐ)</option>
+                            <option value="Chứng nhận sinh viên">Chứng nhận sinh viên</option>
+                            <option value="Hoãn nghĩa vụ quân sụ">Hoãn nghĩa vụ quân sự</option>
+                        </select>
+                        <label for="exampleFormControlSelect1">Chọn loại giấy tờ</label>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="form-outline mb-4 col-xl-6">
+                        <input required type="text" name="rname" id="rname" class="form-control border-primary" />
+                        <label for="rname">Họ và tên người nhận</label>
+                    </div>
+                    <div class="form-outline mb-4 col-xl-6">
+                        <input required type="text" name="rphone" id="rphone" class="form-control border-primary" />
+                        <label class="form-label" for="rphone">Số điện thoại</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-outline mb-4 col-xl-12">
+                        <input required type="text" name="raddress" id="raddress" class="form-control border-primary" />
+                        <label class="form-label" for="raddress">Địa chỉ người nhận</label>
+                    </div>
+                </div>
+
+                <!-- Submit button -->
+                <div class="row">
+                    <div class="col-3"></div>
+                    <button type="button" class="col-6 btn btn-primary btn-block mb-4" data-toggle="modal"
+                        data-target="#modal2">Xác nhận đăng ký</button>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="modal2"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="">Thông báo</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Đã gửi yêu cầu đăng ký
+                            </div>
+                            <div class="modal-footer">
+
+                                <button type="submit" class="btn btn-primary">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end modal -->
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include ('layouts/footer') -%>

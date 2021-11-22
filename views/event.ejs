@@ -1,8 +1,18 @@
 <%- include ('layouts/header') -%>
-
+<style>
+   a i {
+      color: white;
+   }
+</style>
 <!-- dashboard inner -->
 <div class="midde_cont">
    <div class="container-fluid">
+      <div>
+         <div class="alert alert-success alert-dismissible fade show mt-4" <%= hidden %> role="alert">
+            <strong>Thành công!</strong> <%= message %>.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+         </div>
+      </div>
       <div class="row column_title">
          <div class="col-md-12">
             <div class="page_title">

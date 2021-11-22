@@ -1,0 +1,57 @@
+<%- include ('layouts/header') -%>
+<!-- modal -->
+<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Đã xóa thông báo này.
+            </div>
+            <div class="modal-footer">
+                <a href="/hide-reply-<%= currentReply.id %>">
+                    <button type="button" class="btn btn-primary">Trang chủ</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="table mt-3">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="white_shd full margin_bottom_30">
+                <div class="full graph_head">
+                    <div class="heading1 margin_0">
+                        <h2>
+                            <%= currentReply.title %>
+                        </h2>
+                    </div>
+                </div>
+                <div class="full inner_elements">
+                    <div class="m-4">
+                        <p style="font-size: large;">
+                            <%= currentReply.content %>
+                        </p>
+                    </div>
+                    <a href="/index">
+                        <button class="btn btn-primary m-4">Trang chủ</button>
+                    </a>
+
+                    <button class="btn btn-secondary m-4" data-toggle="modal" data-target="#modal1">Xóa thông báo
+                        này</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include ('layouts/footer') -%>

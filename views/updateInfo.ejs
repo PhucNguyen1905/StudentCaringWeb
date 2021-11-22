@@ -1,227 +1,271 @@
 <%- include ('layouts/header') -%>
-    <style>
-        body {
-            background-color: #25274d;
-        }
-        
-        .contact {
-            padding: 4%;
-            height: 400px;
-        }
-        
-        .col-md-3 {
-            background: #ff5722;
-            padding: 4%;
-            border-top-left-radius: 0.5rem;
-            border-bottom-left-radius: 0.5rem;
-        }
-        
-        .contact-info {
-            margin-top: 10%;
-        }
-        
-        .contact-info img {
-            margin-bottom: 15%;
-        }
-        
-        .contact-info h2 {
-            margin-bottom: 10%;
-        }
-        
-        .col-md-9 {
-            background: #fff;
-            padding: 3%;
-            border-top-right-radius: 0.5rem;
-            border-bottom-right-radius: 0.5rem;
-        }
-        
-        .contact-form label {
-            font-weight: 600;
-        }
-        
-        .contact-form button {
-            background: #25274d;
-            color: #fff;
-            font-weight: 600;
-            width: 25%;
-        }
-        
-        .contact-form button:focus {
-            box-shadow: none;
-        }
-    </style>
-    <div class="col-md-12 mt-4 mb-xl-5">
-        <div class="dash_blog">
-            <div class="dash_blog_inner">
-                <div class="dash_head">
-                    <h3><span><i class="fa fa-file-text-o"></i> Chỉnh sửa thông tin cá nhân</span></h3>
-                </div>
-                <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-                <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-                <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-                <!------ Include the above in your HEAD tag ---------->
+<style>
+    body {
+        background-color: #25274d;
+    }
 
-                <div class="container contact">
+    a i {
+        color: white;
+    }
+
+    .contact {
+        padding: 4%;
+        height: 400px;
+    }
+
+    .col-md-3 {
+        background: #ff5722;
+        padding: 4%;
+        border-top-left-radius: 0.5rem;
+        border-bottom-left-radius: 0.5rem;
+    }
+
+    .contact-info {
+        margin-top: 10%;
+    }
+
+    .contact-info img {
+        margin-bottom: 15%;
+    }
+
+    .contact-info h2 {
+        margin-bottom: 10%;
+    }
+
+    .col-md-9 {
+        background: #fff;
+        padding: 3%;
+        border-top-right-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+    }
+
+    .contact-form label {
+        font-weight: 600;
+    }
+
+    .contact-form button {
+        background: #25274d;
+        color: #fff;
+        font-weight: 600;
+        width: 25%;
+    }
+
+    .contact-form button:focus {
+        box-shadow: none;
+    }
+</style>
+<div class="col-md-12 mt-4 mb-xl-5">
+    <div class="dash_blog">
+        <div class="dash_blog_inner">
+            <div class="dash_head">
+                <h3><span><i class="fa fa-file-text-o"></i> Chỉnh sửa thông tin cá nhân</span></h3>
+            </div>
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
+                id="bootstrap-css">
+            <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <!------ Include the above in your HEAD tag ---------->
+
+            <div class="container contact">
 
 
-                    <form method="post" action="/onUpdateInfo">
+                <form method="post" action="/edit-info-student">
 
 
-                        <div class="contact-form">
-                            <div class="row">
-                                <div class="form-group col-sm-4">
-                                    <label class="control-label col-sm-12" style="padding-left: 0px;" for="fullname">Họ và tên:</label>
-                                    <div class="">
-                                        <input type="text" class="form-control" id="fullname" placeholder="Enter Full Name" name="fullName" value="Phạm Bảo Thái">
-                                    </div>
-                                </div>
-                                <div class="form-group col-sm-4">
-                                    <label class="control-label col-sm-12" style="padding-left: 0px;" for="mssv">Mã số sinh viên:</label>
-                                    <div class="">
-                                        <input type="text" class="form-control" id="mssv" placeholder="Enter Last Name" name="mssv" value="1900420">
-                                    </div>
-                                </div>
-                                <div class="form-group col-sm-4">
-                                    <label class="control-label col-sm-12" style="padding-left: 0px;" for="phone">Số điện thoại:</label>
-                                    <div class="">
-                                        <input type="text" class="form-control" id="phone" placeholder="Nhập số điện thoại" name="phone">
-                                    </div>
+                    <div class="contact-form">
+                        <div class="row">
+                            <div class="form-group col-sm-4">
+                                <label class="control-label col-sm-12" style="padding-left: 0px;" for="fullname">Họ và
+                                    tên:</label>
+                                <div class="">
+                                    <input disabled type="text" class="form-control" id="fullname"
+                                        placeholder="Enter Full Name" name="fullName"
+                                        value="<%= user.lname %> <%= user.fname  %>">
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="form-group col-sm-4">
-                                    <label class="control-label col-sm-12" style="padding-left: 0px;" for="houseNumber">Số nhà:</label>
-                                    <div class="">
-                                        <input type="text" class="form-control" id="number" placeholder="Nhập số nhà" name="houseNumber">
-                                    </div>
-                                </div>
-                                <div class="form-group col-sm-4">
-                                    <label class="control-label col-sm-12" style="padding-left: 0px;" for="street">Đường:</label>
-                                    <div class="">
-                                        <input type="text" class="form-control" id="street" placeholder="Nhập tên đường" name="street">
-                                    </div>
-                                </div>
-                                <div class="form-group col-sm-4">
-                                    <label class="control-label col-sm-12" style="padding-left: 0px;" for="province">Tỉnh / thành phố:</label>
-                                    <div class="">
-                                        <input type="text" class="form-control" id="province" placeholder="Nhập tỉnh / thành phố" name="province">
-                                    </div>
+                            <div class="form-group col-sm-4">
+                                <label class="control-label col-sm-12" style="padding-left: 0px;" for="mssv">Mã số sinh
+                                    viên:</label>
+                                <div class="">
+                                    <input disabled type="text" class="form-control" id="mssv"
+                                        placeholder="Enter Last Name" name="mssv" value="<%= user.id  %>">
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal">Cập nhật</button>
-                                </div>
-                            </div>
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Cập nhật thành công
-                                        </div>
-                                        <div class="modal-footer">
-
-                                            <button type="submit" class="btn btn-primary">Trang chủ</button>
-                                        </div>
-                                    </div>
+                            <div class="form-group col-sm-4">
+                                <label class="control-label col-sm-12" style="padding-left: 0px;" for="phone">Số điện
+                                    thoại:</label>
+                                <div class="">
+                                    <input type="text" class="form-control" id="phone" placeholder="Nhập số điện thoại"
+                                        name="phone">
                                 </div>
                             </div>
                         </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-12 mt-4 mb-xl-5">
-        <div class="dash_blog">
-            <div class="dash_blog_inner">
-                <div class="dash_head">
-                    <h3><span><i class="fa fa-file-text-o"></i> Chỉnh sửa thông người thân</span></h3>
-                </div>
-                <div class="container contact">
-                    <form action="/onAddDependent" method="post">
-
-
-                        <div class="contact-form">
-                            <div class="row">
-                                <input type="text" hidden value="1900420" name="mssv">
-                                <div class="form-group col-sm-4">
-                                    <label class="control-label col-sm-12" style="padding-left: 0px;" for="fullname">Họ và tên:</label>
-                                    <div class="">
-                                        <input type="text" class="form-control" id="dfullname" placeholder="Enter Full Name" name="dfullname">
-                                    </div>
-                                </div>
-                                <div class="form-group col-sm-4">
-                                    <label class="control-label col-sm-12" style="padding-left: 0px;" for="phone">Số điện thoại:</label>
-                                    <div class="">
-                                        <input type="text" class="form-control" id="dphone" placeholder="Nhập số điện thoại" name="dphone">
-                                    </div>
-                                </div>
-                                <div class="form-group col-sm-4">
-                                    <label class="control-label col-sm-12" style="padding-left: 0px;" for="phone">Quan hệ:</label>
-                                    <div class="">
-                                        <input type="text" class="form-control" id="drelation" placeholder="Quan hệ với sinh viên" name="drelation">
-                                    </div>
+                        <div class="row">
+                            <div class="form-group col-sm-4">
+                                <label class="control-label col-sm-12" style="padding-left: 0px;" for="houseNumber">Số
+                                    nhà:</label>
+                                <div class="">
+                                    <input type="text" class="form-control" id="number" placeholder="Nhập số nhà"
+                                        name="houseNumber">
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="form-group col-sm-4">
-                                    <label class="control-label col-sm-12" style="padding-left: 0px;" for="fullname">Số nhà:</label>
-                                    <div class="">
-                                        <input type="text" class="form-control" id="dnumber" placeholder="Nhập số nhà" name="dhouseNumber">
-                                    </div>
-                                </div>
-                                <div class="form-group col-sm-4">
-                                    <label class="control-label col-sm-12" style="padding-left: 0px;" for="mssv">Đường:</label>
-                                    <div class="">
-                                        <input type="text" class="form-control" id="dstreet" placeholder="Nhập tên đường" name="dstreet">
-                                    </div>
-                                </div>
-                                <div class="form-group col-sm-4">
-                                    <label class="control-label col-sm-12" style="padding-left: 0px;" for="mssv">Tỉnh / thành phố:</label>
-                                    <div class="">
-                                        <input type="text" class="form-control" id="dprovince" placeholder="Nhập tỉnh / thành phố" name="dprovince">
-                                    </div>
+                            <div class="form-group col-sm-4">
+                                <label class="control-label col-sm-12" style="padding-left: 0px;"
+                                    for="street">Đường:</label>
+                                <div class="">
+                                    <input type="text" class="form-control" id="street" placeholder="Nhập tên đường"
+                                        name="street">
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal1">Thêm</button>
+                            <div class="form-group col-sm-4">
+                                <label class="control-label col-sm-12" style="padding-left: 0px;" for="province">Tỉnh /
+                                    thành phố:</label>
+                                <div class="">
+                                    <input type="text" class="form-control" id="province"
+                                        placeholder="Nhập tỉnh / thành phố" name="province">
                                 </div>
                             </div>
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel1">Thông báo</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-xl-12">
+                                <label class="control-label col-sm-12" style="padding-left: 0px;" for="photo">Ảnh thẻ
+                                    (đường link):</label>
+                                <div class="">
+                                    <input type="text" class="form-control" id="photo" placeholder="Nhập đường dẫn"
+                                        name="photo">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="button" class="btn btn-default" data-toggle="modal"
+                                    data-target="#exampleModal">Cập nhật</button>
+                            </div>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Thêm thành công
-                                        </div>
-                                        <div class="modal-footer">
+                                    </div>
+                                    <div class="modal-body">
+                                        Cập nhật thành công
+                                    </div>
+                                    <div class="modal-footer">
 
-                                            <button type="submit" class="btn btn-primary">Trang chủ</button>
-                                        </div>
+                                        <button type="submit" class="btn btn-primary">OK</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
-    <%- include ('layouts/footer') -%>
+<div class="col-md-12 mt-4 mb-xl-5">
+    <div class="dash_blog">
+        <div class="dash_blog_inner">
+            <div class="dash_head">
+                <h3><span><i class="fa fa-file-text-o"></i> Thêm thông người thân</span></h3>
+            </div>
+            <div class="container contact">
+                <form action="/onAddDependent" method="post">
+
+
+                    <div class="contact-form">
+                        <div class="row">
+                            <input type="text" hidden value="1900420" name="mssv">
+                            <div class="form-group col-sm-4">
+                                <label class="control-label col-sm-12" style="padding-left: 0px;" for="fullname">Họ và
+                                    tên:</label>
+                                <div class="">
+                                    <input type="text" class="form-control" id="dfullname" placeholder="Enter Full Name"
+                                        name="dfullname">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label class="control-label col-sm-12" style="padding-left: 0px;" for="phone">Số điện
+                                    thoại:</label>
+                                <div class="">
+                                    <input type="text" class="form-control" id="dphone" placeholder="Nhập số điện thoại"
+                                        name="dphone">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label class="control-label col-sm-12" style="padding-left: 0px;" for="phone">Quan
+                                    hệ:</label>
+                                <div class="">
+                                    <input type="text" class="form-control" id="drelation"
+                                        placeholder="Quan hệ với sinh viên" name="drelation">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-4">
+                                <label class="control-label col-sm-12" style="padding-left: 0px;" for="fullname">Số
+                                    nhà:</label>
+                                <div class="">
+                                    <input type="text" class="form-control" id="dnumber" placeholder="Nhập số nhà"
+                                        name="dhouseNumber">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label class="control-label col-sm-12" style="padding-left: 0px;"
+                                    for="mssv">Đường:</label>
+                                <div class="">
+                                    <input type="text" class="form-control" id="dstreet" placeholder="Nhập tên đường"
+                                        name="dstreet">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label class="control-label col-sm-12" style="padding-left: 0px;" for="mssv">Tỉnh /
+                                    thành phố:</label>
+                                <div class="">
+                                    <input type="text" class="form-control" id="dprovince"
+                                        placeholder="Nhập tỉnh / thành phố" name="dprovince">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="button" class="btn btn-default" data-toggle="modal"
+                                    data-target="#exampleModal1">Thêm</button>
+                            </div>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel1">Thông báo</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Yêu cầu đang được xử lý
+                                    </div>
+                                    <div class="modal-footer">
+
+                                        <button type="submit" class="btn btn-primary">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include ('layouts/footer') -%>

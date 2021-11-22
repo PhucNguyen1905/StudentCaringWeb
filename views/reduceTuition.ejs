@@ -1,92 +1,156 @@
 <%- include ('layouts/header') -%>
+<style>
+    a i {
+        color: white;
+    }
+</style>
+<!-- modal xem các document đã đăng ký và trạng thái của chúng -->
+<div class="modal fade" id="view" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Danh sách yêu cầu đã gửi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead style="color: blue; font-weight: 700;">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Loại giấy tờ</th>
+                            <th scope="col">Trạng thái</th>
 
+                        </tr>
+                    </thead>
+                    <tbody style="color: black; font-weight: 700;">
+                        <% var i=1 %>
+                        <% requestData.forEach((request)=>{ %>
+                        <tr>
+                            <th scope="row">
+                                <%= request.id %>
+                            </th>
+                            <td>
+                                <%= request.title %>
+                            </td>
+                            <td>
+                                <%= request.rstatus %>
+                            </td>
+                        </tr>
+                        <% i+=1 %>
+                        <% }) %>
 
-    <div class="col-md-12 mt-4 mb-xl-5">
-        <div class="dash_blog">
-            <div class="dash_blog_inner">
-                <div class="dash_head">
-                    <h3><span><i class="fa fa-file-text-o"></i> Đăng ký miễn giảm học phí</span></h3>
-                </div>
-                <form class="mt-4 container-fluid mt-5" method="post" action="/onReduceTuition">
-                    <!-- Name input -->
-                    <div class="row">
-                        <div class="col-2"></div>
-                        <div class="form-outline mb-4 col-xl-4">
-                            <input name="fullName" type="text" id="fullName" class="form-control border-primary" value="Trường" />
-                            <label class="form-label" for="fullName">Họ và Tên</label>
-                        </div>
-
-                        <!-- Email input -->
-                        <div class="form-outline mb-4 col-xl-4">
-                            <input name="mssv" type="text" id="mssv" class="form-control border-primary" value="1915745" />
-                            <label class="form-label" for="mssv">Mã số sinh viên</label>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-2"></div>
-                        <div class="form-outline mb-4 col-xl-4">
-                            <input type="email" name="email" id="email" class="form-control border-primary" />
-                            <label class="form-label" for="email">Email</label>
-                        </div>
-
-                        <!-- Email input -->
-                        <div class="form-outline mb-4 col-xl-4">
-                            <input type="text" name="phoneNumber" id="phoneNumber" class="form-control border-primary" />
-                            <label class="form-label" for="phoneNumber">Số điện thoại</label>
-                        </div>
-                    </div>
-
-                    <!-- Message input -->
-                    <div class="form-outline mb-4 row">
-                        <div class="col-xl-2"></div>
-                        <div class="col-xl-8">
-                            <textarea name="content" class="form-control border-primary" id="form4Example3" rows="4"></textarea>
-
-                            <label class="form-label" for="form4Example3">Lý do miễn giảm học phí.</label>
-                        </div>
-                    </div>
-
-                    <!-- Checkbox -->
-                    <div class="form-check d-flex  mb-4 row ">
-                        <div class="col-4"></div>
-                        <div class="col-auto">
-                            <input name="checkResendEmail" style="float: left;" class="form-check-input me-2" type="checkbox" value="" id="resendEmail" checked />
-                            <label class="form-check-label" for="resendEmail">
-                                Send me a copy of this message
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Submit button -->
-                    <div class="row">
-                        <div class="col-4"></div>
-                        <button type="button" class="col-4 btn btn-primary btn-block mb-4" data-toggle="modal" data-target="#exampleModal">Gửi yêu cầu</button>
-                    </div>
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    Gửi yêu cầu thành công
-                                </div>
-                                <div class="modal-footer">
-
-                                    <button type="submit" class="btn btn-primary">Về trang chủ</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end modal -->
-                </form>
+                    </tbody>
+                </table>
+                <p style="font-weight: 600;">Số yêu cầu đã gửi:
+                    <%= requestNumber %>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
             </div>
         </div>
     </div>
+</div>
 
-    <%- include ('layouts/footer') -%>
+<div class="col-md-12 mt-4 mb-xl-5">
+    <div class="dash_blog">
+        <div class="dash_blog_inner">
+            <div class="dash_head">
+                <h3><span><i class="fa fa-file-text-o"></i> Đăng ký miễn giảm học phí</span></h3>
+                <button type="button" class="btn btn-light" data-toggle="modal" data-target="#view">Xem các yêu cầu đã
+                    đăng ký</button>
+                <div style="height:10px"></div>
+            </div>
+            <form class="mt-4 container-fluid mt-5" method="post" action="/reduce-tuition">
+                <!-- Name input -->
+
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="form-outline mb-4 col-xl-4">
+                        <input name="fullName" disabled type="text" id="fullName" class="form-control border-primary"
+                            value="<%= user.lname %> <%= user.fname%>" />
+                        <label class="form-label" for="fullName">Họ và Tên</label>
+                    </div>
+
+                    <!-- Mssv input -->
+                    <div class="form-outline mb-4 col-xl-4">
+                        <input name="mssv" disabled type="text" id="mssv" class="form-control border-primary"
+                            value="<%= user.id %>" />
+                        <label class="form-label" for="mssv">Mã số sinh viên</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="form-outline mb-4 col-xl-4">
+                        <input type="text" name="title" id="title" class="form-control border-primary" />
+                        <label class="form-label" for="title">Mô tả</label>
+                    </div>
+
+                    <!-- Email input -->
+                    <div class="form-outline mb-4 col-xl-4">
+                        <input type="text" name="phoneNumber" id="phoneNumber" class="form-control border-primary" />
+                        <label class="form-label" for="phoneNumber">Số điện thoại</label>
+                    </div>
+                </div>
+
+                <!-- Message input -->
+                <div class="form-outline mb-4 row">
+                    <div class="col-xl-2"></div>
+                    <div class="col-xl-8">
+                        <textarea name="content" class="form-control border-primary" id="form4Example3"
+                            rows="4"></textarea>
+
+                        <label class="form-label" for="form4Example3">Lý do miễn giảm học phí.</label>
+                    </div>
+                </div>
+
+                <!-- Checkbox -->
+                <div class="form-check d-flex  mb-4 row ">
+                    <div class="col-4"></div>
+                    <div class="col-auto">
+                        <input name="checkResendEmail" style="float: left;" class="form-check-input me-2"
+                            type="checkbox" value="" id="resendEmail" checked />
+                        <label class="form-check-label" for="resendEmail">
+                            Send me a copy of this message
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Submit button -->
+                <div class="row">
+                    <div class="col-4"></div>
+                    <button type="button" class="col-4 btn btn-primary btn-block mb-4" data-toggle="modal"
+                        data-target="#guiyeucau">Gửi yêu cầu</button>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="guiyeucau" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Gửi yêu cầu thành công
+                            </div>
+                            <div class="modal-footer">
+
+                                <button type="submit" class="btn btn-primary">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end modal -->
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include ('layouts/footer') -%>

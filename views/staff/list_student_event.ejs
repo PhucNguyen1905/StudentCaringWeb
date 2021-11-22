@@ -1,0 +1,58 @@
+<%- include ('../layouts/staff_header') -%>
+
+<!-- dashboard inner -->
+<div class="midde_cont">
+   <div class="container-fluid">
+      <div class="row column_title">
+         <div class="col-md-12">
+            <div class="page_title">
+               <h2>Danh sách sinh viên đã đăng ký</h2>
+            </div>
+         </div>
+      </div>
+      <div>
+         <a href="/staff/list-event" class="btn btn-primary">Danh sách sự kiện</a>
+      </div>
+      <div>
+         <table id="datatablesSimple" style="background-color: #FFF5FD;">
+            <thead>
+               <tr>
+                  <th>STT</th>
+                  <th>MSSV</th>
+                  <th>Họ và tên</th>
+                  <th>Hệ</th>
+                  <th>Edumail</th>
+               </tr>
+            </thead>
+            <tfoot>
+               <tr>
+                  <th>STT</th>
+                  <th>MSSV</th>
+                  <th>Họ và tên</th>
+                  <th>Hệ</th>
+                  <th>Edumail</th>
+               </tr>
+            </tfoot>
+            <tbody>
+               <% let i = 1; %>
+               <% students.forEach(function(s){%>
+               <tr>
+                  <td><%= i %></td>
+                  <td><%= s.id %></td>
+                  <td><%= s.lname %> <%= s.fname %></td>
+                  <td><%= s.EduProgram %></td>
+                  <td><%= s.Edu_mail %></td>
+
+               </tr>
+               <% i+=1; %>
+               <%}) %>
+
+            </tbody>
+         </table>
+      </div>
+
+   </div>
+
+   <!-- end dashboard inner -->
+
+   <%- include ('../layouts/footer') -%>

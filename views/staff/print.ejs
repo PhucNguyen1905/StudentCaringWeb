@@ -1,0 +1,68 @@
+<%- include ('../layouts/staff_header') -%>
+
+    <!-- dashboard inner -->
+    <div class="midde_cont">
+        <div class="container-fluid">
+            <!-- <div>
+                <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
+                    <strong>Thành công!</strong>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div> -->
+            <div class="row column_title">
+                <div class="col-md-12">
+                    <div class="page_title">
+                        <h2>Danh sách các yêu cầu in giấy tờ</h2>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <table id="datatablesSimple" style="background-color: #FFF5FD;">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Sinh viên đăng ký</th>
+                            <th>Loại tài liệu</th>
+                            <th>Trạng thái</th>
+                            <th style="text-align: center;">Thao tác</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% let i = 1; %>
+                            <% data.forEach((request)=>{%>
+                                <tr>
+                                    <td>
+                                        <%= i %>
+                                    </td>
+
+                                    <td>
+                                        <%= request.fullname %>
+                                    </td>
+                                    <td>
+                                        <%= request.docType %>
+                                    </td>
+                                    <td>
+                                        <%= request.status %>
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <a class=" link-danger" style="text-decoration: none; color: blue;" href="/staff/print/detail-print-<%= request.ID %>">
+                                            <i class="fa fa-info"></i> Xem chi tiết
+                                        </a>
+                                    </td>
+
+
+                                </tr>
+                                <% i+=1; %>
+                                    <%});%>
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <!-- end dashboard inner -->
+
+        <%- include ('../layouts/footer') -%>

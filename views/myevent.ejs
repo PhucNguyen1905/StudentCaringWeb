@@ -1,0 +1,60 @@
+<%- include ('layouts/header') -%>
+<style>
+   a i {
+      color: white;
+   }
+</style>
+<!-- dashboard inner -->
+<div class="midde_cont">
+   <div class="container-fluid">
+      <div class="row column_title">
+         <div class="col-md-12">
+            <div class="page_title">
+               <h2>Danh sách các sự kiện đã đăng ký</h2>
+            </div>
+         </div>
+      </div>
+      <div>
+         <a href="/event" class="btn btn-primary">Xem các sự kiện mới</a>
+      </div>
+      <div>
+         <table id="datatablesSimple" style="background-color: #FFF5FD;">
+            <thead>
+               <tr>
+                  <th>STT</th>
+                  <th>Ảnh</th>
+                  <th>Tiêu đề</th>
+                  <th>Thời gian</th>
+               </tr>
+            </thead>
+            <tfoot>
+               <tr>
+                  <th>STT</th>
+                  <th>Ảnh</th>
+                  <th>Tiêu đề</th>
+                  <th>Thời gian</th>
+               </tr>
+            </tfoot>
+            <tbody>
+               <% let i = 1; %>
+               <% events.forEach(function(event){%>
+               <tr>
+                  <td><%= i %> </td>
+                  <td><img src="<%= event.image_url %>" alt="" style="height: 5rem; width: 6rem;"></td>
+                  <td><%= event.title %></td>
+                  <td><%= event.time_happen %></td>
+
+               </tr>
+               <% i+=1; %>
+               <%}) %>
+
+            </tbody>
+         </table>
+      </div>
+
+   </div>
+
+   <!-- end dashboard inner -->
+
+
+   <%- include ('layouts/footer') -%>

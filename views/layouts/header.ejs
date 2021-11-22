@@ -29,11 +29,59 @@
     <link rel="stylesheet" href="/css/perfect-scrollbar.css" />
     <!-- custom css -->
     <link rel="stylesheet" href="/css/custom.css" />
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-      <![endif]-->
+
+    <!-- Table -->
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
 </head>
+
+<!-- modal -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Tiêu đề</th>
+                            <th scope="col" style="text-align: center;">Chi tiết</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% var i = 1  %>
+                        <% reply.forEach((rep)=>{%>
+                        <tr>
+                            <th scope="row">
+                                <%= i %>
+                            </th>
+                            <td>
+                                <%= rep.title %>
+                            </td>
+                            <td style="text-align: center;">
+                                <a class=" link-danger" style="text-decoration: none; color: blue;"
+                                    href="/reply-detail-<%= rep.id %>">
+                                    <i class="fa fa-info"></i> Xem chi tiết
+                                </a>
+                            </td>
+                        </tr>
+                        <% i = i +1 %>
+                        <%}) %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <body class="dashboard dashboard_1">
     <div class="full_container">
@@ -43,7 +91,8 @@
                 <div class="sidebar_blog_1">
                     <div class="sidebar-header">
                         <div class="logo_section">
-                            <a href="/"><img class="logo_icon img-responsive" src="/images/logo/logo.png" alt="#" /></a>
+                            <a href="/index"><img class="logo_icon img-responsive" src="/images/logo/logo.png"
+                                    alt="#" /></a>
                         </div>
                     </div>
                     <div class="sidebar_user_info">
@@ -61,7 +110,7 @@
                 <div class="sidebar_blog_2">
                     <h4> Trường ĐH Bách Khoa</h4>
                     <ul class="list-unstyled components">
-                        <li><a href="/"><i class="fa fa-dashboard yellow_color"></i> <span>Thông báo</span></a>
+                        <li><a href="/index"><i class="fa fa-dashboard yellow_color"></i> <span>Thông báo</span></a>
 
                         <li>
                             <a href="#element" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
@@ -107,11 +156,17 @@
                                 <div class="icon_info">
                                     <ul>
                                         <!-- Edit here to update new attention -->
-                                        <li><a href="#"><i class="fa fa-bell-o"></i><span class="badge"></span></a>
+                                        <li>
+                                            <a data-toggle="modal" data-target=".bd-example-modal-lg">
+                                                <i class="fa fa-bell-o"></i>
+                                                <span class="badge"><%= reply.length %></span>
+                                            </a>
                                         </li>
-                                        <li><a href="#"><i class="fa fa-question-circle"></i></a></li>
-                                        <li><a href="/chat"><i class="fa fa-envelope-o"></i><span
-                                                    class="badge"></span></a>
+                                        <li>
+                                            <a href="/chat">
+                                                <i class="fa fa-envelope-o"></i>
+                                                <span class="badge"></span>
+                                            </a>
                                         </li>
                                     </ul>
                                     <ul class="user_profile_dd">

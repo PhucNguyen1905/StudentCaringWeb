@@ -2,6 +2,9 @@ const express = require("express");
 const route = express.Router();
 const notiController = require('../controllers/notiController');
 const eventController = require('../controllers/eventController');
+const documentController = require('../controllers/documentController');
+const tuitionController = require('../controllers/tuitionController');
+const feedbackController = require('../controllers/feedbackController');
 const authController = require('../controllers/staff_authController');
 const auth = require('../config/auth');
 const isStaff = auth.isStaff;
@@ -27,6 +30,29 @@ route.post('/event/edit-event/:id', eventController.editEvent);
 route.get('/event/delete-event/:id', isStaff, eventController.deleteEvent);
 route.get('/event/status-on/:id', isStaff, eventController.statusOn);
 route.get('/event/status-off/:id', isStaff, eventController.statusOff);
+route.get('/event/list-student/:id', isStaff, eventController.viewListStudent);
+
+
+//This is for duyệt in tài liệu
+route.get('/print/detail-print-:id', isStaff, documentController.viewPrintDetail);
+route.post('/print/refuse-request-:id', documentController.refuseRequest);
+route.post('/print/complete-request-:id', documentController.completeRequest);
+route.post('/print/delete-request-:id', documentController.deleteRequest);
+route.get('/print', isStaff, documentController.viewPrint);
+
+//This is for duyệt miễn giảm học phí
+route.post('/tuition/delete-request-:id', isStaff, tuitionController.deleteRequest);
+route.post('/tuition/detail-request-:id/reject-request', tuitionController.rejectRequest);
+route.post('/tuition/detail-request-:id/accept-request', tuitionController.acceptRequest);
+route.get('/tuition/detail-request-:id', isStaff, tuitionController.viewRequestDetail);
+route.get('/tuition', isStaff, tuitionController.viewRequest);
+
+//This is for feedback
+route.post('/feedback/delete-feedback-:id', feedbackController.deleteFeedback);
+route.post('/feedback/respond-feedback-:id', feedbackController.respondFeedback);
+route.get('/feedback/detail-feedback-:id', isStaff, feedbackController.viewFeedbackDetail);
+route.get('/feedback', isStaff, feedbackController.viewFeedback);
+
 
 
 // This is for Logon - Logout

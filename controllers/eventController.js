@@ -14,7 +14,6 @@ let STAFF;
 // This is for Sự kiện function
 exports.viewEvent = (req, res) => {
     STAFF = res.locals.user;
-    console.log(STAFF)
     connection.query('SELECT * FROM event', (err, events) => {
         // When done with the connection, release it
         if (!err) {
@@ -35,6 +34,18 @@ exports.viewEvent = (req, res) => {
 exports.viewAddEvent = (req, res) => {
     res.render('staff/add_event', {
         title: 'Thêm sự kiện mới'
+    })
+}
+
+exports.viewListStudent = (req, res) => {
+    let eventID = req.params.id;
+    let sql = 'SELECT * FROM student WHERE id IN (SELECT StudentID FROM register WHERE Event_ID = ?)';
+    connection.query(sql, [eventID], (err, students) => {
+        if (err) throw err;
+        res.render('staff/list_student_event', {
+            title: 'Danh sách sinh viên',
+            students: students
+        })
     })
 }
 
