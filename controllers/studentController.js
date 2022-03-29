@@ -129,22 +129,44 @@ exports.viewChat = (req, res) => {
     connection.query(conSql, [stuID], (error, consultants) => {
         // When done with the connection, release it
         if (error) throw error;
-        let latestConsID = consultants[0].id;
-        let messSql = 'SELECT * FROM contents WHERE student_id = ? AND Consultant_ID = ?; select * from reply where studentID = ? and seen = ?'
-        connection.query(messSql, [stuID, latestConsID, STUDENT.id, 0], (err, results) => {
-            if (err) throw err;
-            messsages = results[0];
-            reply = results[1];
-            res.render('chat', {
-                title: 'Tin nhắn',
-                user: STUDENT,
-                consultants: consultants,
-                messages: messsages,
-                convertDate: convertDate,
-                reply: reply,
-                countReply: reply.length
+        let latestConsID = 0;
+        if (consultants.length != 0) {
+            latestConsID = consultants[0].id;
+            let messSql = 'SELECT * FROM contents WHERE student_id = ? AND Consultant_ID = ?; select * from reply where studentID = ? and seen = ?'
+            connection.query(messSql, [stuID, latestConsID, stuID, 0], (err, results) => {
+                if (err) throw err;
+                messsages = results[0];
+                reply = results[1];
+                res.render('chat', {
+                    title: 'Tin nhắn',
+                    user: STUDENT,
+                    consultants: consultants,
+                    messages: messsages,
+                    convertDate: convertDate,
+                    reply: reply,
+                    countReply: reply.length
+                })
             })
-        })
+        } else {
+            let sql = 'SELECT * FROM school_staff s JOIN consultant c ON s.ID =c.ID JOIN consulting_field ON s.ID = consultant_id; select * from reply where studentID = ? and seen = ?'
+            connection.query(sql, [STUDENT.id, 0], (err, results) => {
+                // When done with the connection, release it
+                if (!err) {
+                    consultants = results[0];
+                    reply = results[1];
+                    res.render('contact', {
+                        title: 'Liên hệ',
+                        consultants: consultants,
+                        reply: reply,
+                        countReply: reply.length
+                    });
+                } else {
+                    console.log(err);
+                }
+
+            });
+        }
+
 
     });
 
